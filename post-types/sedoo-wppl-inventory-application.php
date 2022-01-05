@@ -5,51 +5,33 @@
  * Registers the `sedoo_inventory_application` post type.
  */
 
-function sedoo_wppl_inventory_application_init() {
-    register_post_type( 'sedoo_inventory_application', array(
-        'labels'                => array(
-            'name'                  => __( 'Applications', 'sedoo-wppl-inventory' ),
-			'singular_name'         => __( 'Application', 'sedoo-wppl-inventory' ),
-			'all_items'             => __( 'All Applications', 'sedoo-wppl-inventory' ),
-			'archives'              => __( 'Application Archives', 'sedoo-wppl-inventory' ),
-			'attributes'            => __( 'Application Attributes', 'sedoo-wppl-inventory' ),
-			'insert_into_item'      => __( 'Insert into Application', 'sedoo-wppl-inventory' ),
-			'uploaded_to_this_item' => __( 'Uploaded to this Application', 'sedoo-wppl-inventory' ),
-			'featured_image'        => _x( 'Featured Image', 'sedoo_inventory_application', 'sedoo-wppl-inventory' ),
-			'set_featured_image'    => _x( 'Set featured image', 'sedoo_inventory_application', 'sedoo-wppl-inventory' ),
-			'remove_featured_image' => _x( 'Remove featured image', 'sedoo_inventory_application', 'sedoo-wppl-inventory' ),
-			'use_featured_image'    => _x( 'Use as featured image', 'sedoo_inventory_application', 'sedoo-wppl-inventory' ),
-			'filter_items_list'     => __( 'Filter Applications list', 'sedoo-wppl-inventory' ),
-			'items_list_navigation' => __( 'Applications list navigation', 'sedoo-wppl-inventory' ),
-			'items_list'            => __( 'Applications list', 'sedoo-wppl-inventory' ),
-			'new_item'              => __( 'New Application', 'sedoo-wppl-inventory' ),
-			'add_new'               => __( 'Add New', 'sedoo-wppl-inventory' ),
-			'add_new_item'          => __( 'Add New Application', 'sedoo-wppl-inventory' ),
-			'edit_item'             => __( 'Edit Application', 'sedoo-wppl-inventory' ),
-			'view_item'             => __( 'View Application', 'sedoo-wppl-inventory' ),
-			'view_items'            => __( 'View Applications', 'sedoo-wppl-inventory' ),
-			'search_items'          => __( 'Search Applications', 'sedoo-wppl-inventory' ),
-			'not_found'             => __( 'No Applications found', 'sedoo-wppl-inventory' ),
-			'not_found_in_trash'    => __( 'No Applications found in trash', 'sedoo-wppl-inventory' ),
-			'parent_item_colon'     => __( 'Parent Application:', 'sedoo-wppl-inventory' ),
-			'menu_name'             => __( 'Applications', 'sedoo-wppl-inventory' ),
-        ),
-        'public'                => true,
-		'hierarchical'          => false,
-		'show_ui'               => true,
-		'show_in_nav_menus'     => true,
-		'menu_position'         => 30,
-		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
-		'has_archive'           => true,
-		'rewrite'               => array('slug' => 'Application','with_front' => true),
-		'query_var'             => true,
-		'menu_position'         => null,
-		'menu_icon'             => 'dashicons-awards',
-		'show_in_rest'          => true,
-		'rest_base'             => 'Applications',
-		'rest_controller_class' => 'WP_REST_Posts_Controller',
 
-    ) );
+function sedoo_wppl_inventory_application_init() {
+    register_post_type('application', array(
+    'label' => 'Applications',
+    'labels' => array(
+      'name' => 'Applications',
+      'singular_name' => 'Application',
+      'all_items' => 'Toutes les applications',
+      'add_new_item' => 'Ajouter une application',
+      'edit_item' => 'Éditer l\'application',
+      'new_item' => 'Nouvelle application',
+      'view_item' => 'Voir l\'application',
+      'search_items' => 'Rechercher parmi les applications',
+      'not_found' => 'Pas d\'application trouvé',
+      'not_found_in_trash'=> 'Pas d\'application dans la corbeille'
+      ),
+    'public' => true,
+    'capability_type' => 'post',
+    'supports' => array(
+      'title',
+      'editor',
+      'excerpt',
+      'thumbnail',
+      'menu_icon' => 'dashicons-welcome-view-site',
+    ),
+    'has_archive' => true
+  ) );
 }
 add_action( 'init', 'sedoo_wppl_inventory_application_init' );
 
@@ -100,8 +82,8 @@ add_filter ( 'single_template', 'sedoo_application_inventory_single' );
 function sedoo_application_inventory_single($single_template) {
     global $post;
     
-    if ($post->post_type == 'sedoo_inventory_application') {
-        $single_template = plugin_dir_path( __FILE__ ) . 'single-seddo-application-inventory';
+    if ($post->post_type == 'application') {
+        $single_template = plugin_dir_path( __FILE__ ) . 'single-application.php';
     }
     return $single_template;
 }
