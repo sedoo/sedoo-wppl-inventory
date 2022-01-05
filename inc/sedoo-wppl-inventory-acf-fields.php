@@ -1,0 +1,138 @@
+<?php 
+
+if( function_exists('acf_add_local_field_group') ):
+
+    acf_add_local_field_group(array(
+        'key' => 'group_61d5a0a55a9ae',
+        'title' => 'CPT Fields Application',
+        'fields' => array(
+            array(
+                'key' => 'field_61d5a0c1d6be9',
+                'label' => 'URL de l\'Application ou du Site',
+                'name' => 'url_app',
+                'type' => 'url',
+                'instructions' => 'Saisissez l\'url complète de l\'application ou du site internet',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => 'www.google.fr',
+            ),
+            array(
+                'key' => 'field_61d5a0f9d6bea',
+                'label' => 'URL du backoffice de l\'application ou du site',
+                'name' => 'url_backoff',
+                'type' => 'url',
+                'instructions' => 'Saisissez l\'URL du backoffice pour accéder à cette application',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => 'www.google.fr/backoffice',
+            ),
+            array(
+                'key' => 'field_61d5a15a66b15',
+                'label' => 'Contact',
+                'name' => 'contact',
+                'type' => 'text',
+                'instructions' => 'Saisissez le contact en charge de la gestion du site ou de l\'application',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+            array(
+                'key' => 'field_61d5a1ac66b16',
+                'label' => 'Connexion au LDAP',
+                'name' => 'ldap_connect',
+                'type' => 'true_false',
+                'instructions' => 'Le site ou l\'application est-il connecté au LDAP',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => 'Connecté ou LDAP',
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+            array(
+                'key' => 'field_61d5a2ce66b17',
+                'label' => 'Date de Création du Site ou de l\'Application',
+                'name' => 'date_of_birth',
+                'type' => 'date_picker',
+                'instructions' => 'Saisissez la date de naissance du site ou de l\'application',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'display_format' => 'd/m/Y',
+                'return_format' => 'd/m/Y',
+                'first_day' => 1,
+            ),
+            array(
+                'key' => 'field_61d5a36066b18',
+                'label' => 'Type de mot de passe',
+                'name' => 'password_method',
+                'type' => 'text',
+                'instructions' => 'Indiquez la méthode de mot de passe utilisée pour accéder à l\'espace d\'administration du site ou de l\'application',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'application',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+        'show_in_rest' => 0,
+    ));
+    
+    endif;		
+
+?>

@@ -23,11 +23,7 @@ function sedoo_wppl_inventory_application_init() {
       ),
     'public' => true,
     'capability_type' => 'post',
-    'supports' => array(
-      'title',
-      'editor',
-      'excerpt',
-      'thumbnail',
+    'supports' => array('title','editor', 'excerpt','thumbnail',
       'menu_icon' => 'dashicons-welcome-view-site',
     ),
     'has_archive' => true
@@ -72,18 +68,4 @@ function sedoo_application_inventory_updated_messages( $messages ) {
 }
 add_filter( 'post_updated_messages', 'sedoo_application_inventory_updated_messages' );
 
-
-/**
- * Displays template part fo the 'sedoo_inventory_application` post type.
- * 
- */
-
-add_filter ( 'single_template', 'sedoo_application_inventory_single' );
-function sedoo_application_inventory_single($single_template) {
-    global $post;
-    
-    if ($post->post_type == 'application') {
-        $single_template = plugin_dir_path( __FILE__ ) . 'single-application.php';
-    }
-    return $single_template;
-}
+?>

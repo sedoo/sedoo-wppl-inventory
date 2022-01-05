@@ -29,3 +29,7 @@ include 'taxonomies/sedoo-wppl-inventrory-instance-wp.php';
 include 'taxonomies/sedoo-wppl-inventrory-type-de-site.php';
 include 'taxonomies/sedoo-wppl-inventrory-structure.php';
 include 'taxonomies/sedoo-wppl-inventrory-server.php';
+// AUTRE
+include 'sedoo-wppl-inventory-display.php';
+include 'inc/sedoo-wppl-inventory-acf-fields.php';
+include 'inc/sedoo-wppl-inventory-acf.php';

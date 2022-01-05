@@ -1,40 +1,33 @@
-<?php get_header(); ?>
-    
-<div>
+<?php
+/**
+ * template for Research Teams CPT (show post / platform associate by theme taxonomy)
+*/
 
-        
-        <main  class="">
-            <?php if (have_posts()) : ?>
-            
-                <?php while (have_posts()) : the_post(); ?>
-                <article class="flexRowCenter w80">
-                    <div class="imageBloc w50 borderBox textAlignRight animate__animated animate__fadeInLeft">
-                        <?php the_post_thumbnail( 'large'); ?>
-                    </div><!--
-                    --><div class="w50  borderBox padding100px">
-                        <h1 class="title fontsize35px margin0">
-                        <?php  the_title(); ?>
-                        </h1>
-                        <div class="content">
-                            <?php the_content(); ?>
-                            <a class="inlineBlockMid padding10 bgColorBlack colorWhite" href="http://localhost/theme-de-greg/membre">Retour</a>
-                        </div>
-                </article>
-                <style>
-                    article{
-                        padding:50px 0;
-                    }
-                </style>
-                <?php endwhile; ?>
-            <?php endif; ?>
+get_header(); 
 
+while ( have_posts() ) : the_post();
+?>
 
-        </main>
-            
+<!-- L'AFFICHAGE COMMENCE ICI -->
+<?php
+if (function_exists('sedoo_wpth_labs_test_if_post_thumbnail_and_display')) {
+sedoo_wpth_labs_test_if_post_thumbnail_and_display();
+}
+// Show title first on mobile
+if ((get_field( 'table_content' )) && (function_exists('sedoo_wpth_labs_display_title_on_top_on_mobile'))) {
+   sedoo_wpth_labs_display_title_on_top_on_mobile();
+}
+?>
+<div class="single-post single-sedoo-wppl-project">
+   <?php // table_content ( value ) 
+   if ((get_field( 'table_content' )) && (function_exists('sedoo_wpth_labs_display_sommaire'))) {
+      sedoo_wpth_labs_display_sommaire('Sommaire');
+   } 
 
-
-
-
-    </div>
-
-<?php get_footer(); ?> 
+    // sedoo_labtools_show_categories($themes, $themeSlugRewrite);
+   include( 'template-parts/content-page.php' );
+?>
+</div>
+<?php 
+endwhile; 
+get_footer();
