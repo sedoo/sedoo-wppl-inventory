@@ -25,9 +25,11 @@ $image_app = get_field('sedoo_inventory_image_app');
             <main id="main" class="site-main">
                 <article id="post-<?php the_ID();?>">	
                     <header>
+						<h3><b>URL: </b><?php echo $url_app; ?></h3>
+						<h3><b>BACKOFFICE: </b><?php echo $url_backoff; ?></h3>
+						<span>  <?php echo $url_app; ?></span>
 						<div>
-							<h1><?php the_title(); ?></h1>
-							<span>  <?php echo $url_app; ?></span>
+							
 							<div>
 								<a title="<?php echo __( 'Project website', 'sedoo-wppl-projects' ); ?>" target="_blank" href=" <?php echo $url_backoff; ?>"> <?php echo $url_backoff; ?> </a>
 							</div>
@@ -48,52 +50,15 @@ $image_app = get_field('sedoo_inventory_image_app');
                         <p><?php the_field("sources") ?></p>
                     </footer>
                     <?php } ?>
-                </article>
-            </main><!-- #main -->
-			
-			<?php 
-				$thematiques = get_the_terms( get_the_ID(), $taxo_names_thematiques );
-				$liste_offres = get_the_terms( get_the_ID(), $taxo_names_offre_services);
-				$liste_typologies = get_the_terms( get_the_ID(), $taxo_names_typologie );
-			if(($thematiques == NULL) && ($liste_offres == NULL) && ($liste_typologies == NULL)) {}
-			else {
-			?>
+               
+				</article>
+            
+			</main><!-- #main -->
 
 				<aside class="contextual-sidebar project-sidebar">
 					<section class="sedoo-project-section-date">
-					<?php 
-						$start_date = get_field('date_de_debut');
-						$end_date = get_field('date_de_fin');
-
-						if($start_date > date('d/m/Y') || !$start_date) { 
-							// if project no started yed
-							echo '<p class="proj_status com_up"> '.__( 'Upcoming', 'sedoo-wppl-projects' ). '</p>'; 
-						}
-						elseif(!$end_date || $end_date > date('d/m/Y')) { 
-							// if project has no end date or if project is not finished yet
-							echo '<p class="proj_status ongoing"> '.__( 'On going', 'sedoo-wppl-projects' ). '</p>'; 
-						}
-						elseif($end_date < date('d/m/Y')) {
-							// if en date is passed
-							echo '<p class="proj_status finish"> '.__( 'Finish', 'sedoo-wppl-projects' ). '</p>';
-						}
-
-						if($start_date) {
-							echo '<h2> '.__( 'Project dates', 'sedoo-wppl-projects' ). '</h2>';
-							echo '<div>';
-							if($end_date) { // in french : de
-								echo '<p> '.__( 'From', 'sedoo-wppl-projects' ). ' '.$start_date;
-							} 
-							else { // in french : depuis
-								echo '<p> '.__( 'Since', 'sedoo-wppl-projects' ). ' '.$start_date;
-							} 
-							if($end_date) {
-								echo ' '.__( 'to', 'sedoo-wppl-projects' ). ' '.$end_date;
-							} 
-							echo '</p></div>';
-						}
-					?>
-				</section>
+					
+					</section>
 					<?php 
 						if($contact_app || $ldap_connect) {
 							echo '<section class="sedoo-project-section-urls">';
@@ -158,7 +123,6 @@ $image_app = get_field('sedoo_inventory_image_app');
 					?>
 				</aside>
 			<?php
-			}
 		?>
 		</div>
 	</div>

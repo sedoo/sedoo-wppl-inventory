@@ -8,7 +8,7 @@ get_header();
 while ( have_posts() ) : the_post();
 ?>
 
-<!-- L'AFFICHAGE COMMENCE ICI -->
+<!-- L'AFFICHAGE COMMENCE ICI - INVENTORY APP -->
 <?php
 if (function_exists('sedoo_wpth_labs_test_if_post_thumbnail_and_display')) {
 sedoo_wpth_labs_test_if_post_thumbnail_and_display();
