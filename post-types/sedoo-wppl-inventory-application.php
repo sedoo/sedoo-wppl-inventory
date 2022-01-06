@@ -7,7 +7,7 @@
 
 
 function sedoo_wppl_inventory_application_init() {
-    register_post_type('application', array(
+    register_post_type('sedoo_inventory_app', array(
     'label' => 'Applications',
     'labels' => array(
       'name' => 'Applications',
@@ -21,13 +21,21 @@ function sedoo_wppl_inventory_application_init() {
       'not_found' => 'Pas d\'application trouvé',
       'not_found_in_trash'=> 'Pas d\'application dans la corbeille'
       ),
-    'public' => true,
-    'capability_type' => 'post',
-    'supports' => array('title','editor', 'excerpt','thumbnail',
-      'menu_icon' => 'dashicons-welcome-view-site',
-    ),
-    'has_archive' => true
-  ) );
+	  'public'                => true,
+	  'hierarchical'          => false,
+	  'show_ui'               => true,
+	  'show_in_nav_menus'     => true,
+	  'menu_position'         => 30,
+	  'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+	  'has_archive'           => true,
+	  'rewrite'               => array('slug' => 'application','with_front' => true),
+	  'query_var'             => true,
+	  'menu_position'         => null,
+	  'menu_icon'             => 'dashicons-welcome-view-site',
+	  'show_in_rest'          => true,
+	  'rest_base'             => 'axe',
+	  'rest_controller_class' => 'WP_REST_Posts_Controller',
+  ) );	
 }
 add_action( 'init', 'sedoo_wppl_inventory_application_init' );
 
@@ -38,12 +46,12 @@ add_action( 'init', 'sedoo_wppl_inventory_application_init' );
  * @return array Messages for the `sedoo_inventory_application` post type.
  */
 
-function sedoo_application_inventory_updated_messages( $messages ) {
+function sedoo_app_inventory_updated_messages( $messages ) {
 	global $post;
 
 	$permalink = get_permalink( $post );
 
-	$messages['sedoo_inventory_application'] = array(
+	$messages['sedoo_inventory_app'] = array(
 		0  => '', // Unused. Messages start at index 1.
 		/* translators: %s: post permalink */
 		1  => sprintf( __( 'application updated. <a target="_blank" href="%s">View application</a>', 'sedoo-wppl-inventory' ), esc_url( $permalink ) ),
@@ -66,6 +74,6 @@ function sedoo_application_inventory_updated_messages( $messages ) {
 
 	return $messages;
 }
-add_filter( 'post_updated_messages', 'sedoo_application_inventory_updated_messages' );
+add_filter( 'post_updated_messages', 'sedoo_app_inventory_updated_messages' );
 
 ?>

@@ -9,7 +9,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_61d5a0c1d6be9',
                 'label' => 'URL de l\'Application ou du Site',
-                'name' => 'url_app',
+                'name' => 'sedoo_inventory_url_app',
                 'type' => 'url',
                 'instructions' => 'Saisissez l\'url complète de l\'application ou du site internet',
                 'required' => 1,
@@ -25,7 +25,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_61d5a0f9d6bea',
                 'label' => 'URL du backoffice de l\'application ou du site',
-                'name' => 'url_backoff',
+                'name' => 'sedoo_inventory_url_backoff',
                 'type' => 'url',
                 'instructions' => 'Saisissez l\'URL du backoffice pour accéder à cette application',
                 'required' => 0,
@@ -41,7 +41,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_61d5a15a66b15',
                 'label' => 'Contact',
-                'name' => 'contact',
+                'name' => 'sedoo_inventory_contact_app',
                 'type' => 'text',
                 'instructions' => 'Saisissez le contact en charge de la gestion du site ou de l\'application',
                 'required' => 1,
@@ -60,7 +60,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_61d5a1ac66b16',
                 'label' => 'Connexion au LDAP',
-                'name' => 'ldap_connect',
+                'name' => 'sedoo_inventory_ldap_connect',
                 'type' => 'true_false',
                 'instructions' => 'Le site ou l\'application est-il connecté au LDAP',
                 'required' => 0,
@@ -79,7 +79,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_61d5a2ce66b17',
                 'label' => 'Date de Création du Site ou de l\'Application',
-                'name' => 'date_of_birth',
+                'name' => 'sedoo_inventory_date_app',
                 'type' => 'date_picker',
                 'instructions' => 'Saisissez la date de naissance du site ou de l\'application',
                 'required' => 0,
@@ -96,7 +96,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_61d5a36066b18',
                 'label' => 'Type de mot de passe',
-                'name' => 'password_method',
+                'name' => 'sedoo_inventory_password_app',
                 'type' => 'text',
                 'instructions' => 'Indiquez la méthode de mot de passe utilisée pour accéder à l\'espace d\'administration du site ou de l\'application',
                 'required' => 0,
@@ -112,13 +112,37 @@ if( function_exists('acf_add_local_field_group') ):
                 'append' => '',
                 'maxlength' => '',
             ),
+            array(
+                'key' => 'field_61d6b4c972c60',
+                'label' => 'Image de mise en avant',
+                'name' => 'sedoo_inventory_image_app',
+                'type' => 'image',
+                'instructions' => 'Insérez une capture d\'écran de la page d\'accueil du site internet ou de l\'application',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'return_format' => 'url',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => 'jpg, jpeg, gif, png',
+            ),
         ),
         'location' => array(
             array(
                 array(
                     'param' => 'post_type',
                     'operator' => '==',
-                    'value' => 'application',
+                    'value' => 'sedoo_inventory_app',
                 ),
             ),
         ),

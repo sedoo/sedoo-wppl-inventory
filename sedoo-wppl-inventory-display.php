@@ -8,7 +8,7 @@
     function sedoo_application_inventory_single($single_template) {
         global $post;
         
-        if ($post->post_type == 'application') {
+        if ($post->post_type == 'sedoo_inventory_app') {
             $single_template = plugin_dir_path( __FILE__ ) . 'single-application.php';
         }
         return $single_template;

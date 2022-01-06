@@ -11,11 +11,13 @@ global $taxo_names_typologie;
 global $taxo_names_thematiques;
 global $taxo_names_offre_services;
 
-$nom_long = get_field('sedoo_project_nom_long');
-$site_web = get_field('sedoo_project_site_du_projet');
-$url_data_access = get_field('sedoo_project_url_data_access');
-$url_project_mission = get_field('sedoo_project_url_project_mission');
-$logo_url = get_field('sedoo_project_logo');
+$url_app = get_field('sedoo_inventory_url_app');
+$url_backoff = get_field('sedoo_inventory_url_backoff');
+$contact_app = get_field('sedoo_inventory_contact_app');
+$ldap_connect = get_field('sedoo_inventory_ldap_connect');
+$date_app = get_field('sedoo_inventory_date_app');
+$password_app = get_field('sedoo_inventory_password_app');
+$image_app = get_field('sedoo_inventory_image_app');
 ?>
 
 <div id="primary" class="content-area project-content-page">
@@ -25,15 +27,15 @@ $logo_url = get_field('sedoo_project_logo');
                     <header>
 						<div>
 							<h1><?php the_title(); ?></h1>
-							<span>  <?php echo $nom_long; ?></span>
+							<span>  <?php echo $url_app; ?></span>
 							<div>
-								<a title="<?php echo __( 'Project website', 'sedoo-wppl-projects' ); ?>" target="_blank" href=" <?php echo $site_web; ?>"> <?php echo $site_web; ?> </a>
+								<a title="<?php echo __( 'Project website', 'sedoo-wppl-projects' ); ?>" target="_blank" href=" <?php echo $url_backoff; ?>"> <?php echo $url_backoff; ?> </a>
 							</div>
 						</div>
 
-						<?php if($logo_url) { ?>
+						<?php if($image_app) { ?>
 							<figure>
-								<img src="<?php echo $logo_url; ?>">
+								<img src="<?php echo $image_app; ?>">
 							</figure>
 						<?php } ?>
 	                </header>
@@ -93,18 +95,18 @@ $logo_url = get_field('sedoo_project_logo');
 					?>
 				</section>
 					<?php 
-						if($url_data_access || $url_project_mission) {
+						if($contact_app || $ldap_connect) {
 							echo '<section class="sedoo-project-section-urls">';
 							echo '<h2> URL </h2>';
 						}
-						if($url_data_access) {
-							echo '<a href="'.$url_data_access.'">'.__( 'Data access', 'sedoo-wppl-projects' ). '</a>';
+						if($contact_app) {
+							echo '<a href="'.$contact_app.'">'.__( 'Data access', 'sedoo-wppl-projects' ). '</a>';
 						}
-						if($url_project_mission) {
-							echo '<a href="'.$url_project_mission.'">'.__( 'Official website', 'sedoo-wppl-projects' ). '</a>';	
+						if($ldap_connect) {
+							echo '<a href="'.$ldap_connect.'">'.__( 'Official website', 'sedoo-wppl-projects' ). '</a>';	
 						}
 
-						if($url_data_access || $url_project_mission) {	
+						if($contact_app || $ldap_connect) {	
 							echo '</section>';
 						}
 					?>
