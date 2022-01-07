@@ -159,14 +159,10 @@ if( function_exists('acf_add_local_field_group') ):
         'description' => '',
         'show_in_rest' => 0,
     ));
-    
-    endif;		
+
     // ************************
     // Contact acf fields
     // ************************
-
-    if( function_exists('acf_add_local_field_group') ):
-
         acf_add_local_field_group(array(
             'key' => 'group_61d721429210e',
             'title' => 'CPT Fields Contacts',
@@ -287,6 +283,7 @@ if( function_exists('acf_add_local_field_group') ):
             'description' => '',
             'show_in_rest' => 0,
         ));
+        
         
         endif;		
 ?>

@@ -18,6 +18,12 @@ $ldap_connect = get_field('sedoo_inventory_ldap_connect');
 $date_app = get_field('sedoo_inventory_date_app');
 $password_app = get_field('sedoo_inventory_password_app');
 $image_app = get_field('sedoo_inventory_image_app');
+$contact_name = get_field('inventory_contact_name');
+$contact_first_name = get_field('inventory_contact_first_name');
+$contact_mail = get_field('inventory_contact_mail');
+$contact_phone = get_field('inventory_contact_phone');
+$contact_structure = get_field('inventory_contact_structure');
+$contact_img = the_post_thumbnail();
 ?>
 
 <div id="primary" class="content-area project-content-page">
@@ -27,7 +33,7 @@ $image_app = get_field('sedoo_inventory_image_app');
                     <header>
 						
 						<h1><?php the_title(); ?></h1>
-					
+						<!-- Application -->
 						<?php if($url_app) { ?>
 						<p class="infoApptext"><b>URL: </b><span class="colorGrey"><a href="<?php echo $url_app; ?>" title="lien vers <?php echo $url_app; ?> "><?php echo $url_app; ?></a></span></p>
 						<?php } ?>
@@ -53,6 +59,28 @@ $image_app = get_field('sedoo_inventory_image_app');
 								<img src="<?php echo $image_app; ?>">
 							</figure>
 						<?php } ?>
+						<!-- contact -->
+						<?php if($contact_name) { ?>
+						<p class="infoApptext"><b>Nom: </b><span class="colorGrey"><?php echo $contact_name; ?>	</span></p>
+						<?php } ?>
+						<?php if($contact_first_name) { ?>
+						<p class="infoApptext"><b>Prénom: </b><span class="colorGrey"><?php echo $contact_first_name; ?>	</span></p>
+						<?php } ?>
+						<?php if($contact_mail) { ?>
+						<p class="infoApptext"><b>Mail: </b><span class="colorGrey"><?php echo $contact_mail; ?></span></p>
+						<?php } ?>
+						<?php if($contact_phone) { ?>
+						<p class="infoApptext"><b>Phone: </b><span class="colorGrey"><?php echo $contact_phone; ?></span></p>
+						<?php } ?>
+						<?php if($contact_structure) { ?>
+						<p class="infoApptext"><b>Structure: </b><span class="colorGrey"><?php echo $contact_structure; ?></span></p>
+						<?php } ?>
+
+						<?php if($contact_img) { ?>
+							<figure class="imgApp">
+							<?php the_post_thumbnail(); ?>
+							</figure>
+						<?php } ?>
 	                </header>
                     <section>
                         <?php the_content(); ?>
@@ -61,8 +89,7 @@ $image_app = get_field('sedoo_inventory_image_app');
                     <footer class="">
                         
                     </footer>
-                 
-               
+					
 				</article>
             
 			</main><!-- #main -->

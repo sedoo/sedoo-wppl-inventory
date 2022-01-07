@@ -26,7 +26,7 @@ include 'post-types/sedoo-wppl-inventory-application.php';
 include 'post-types/sedoo-wppl-inventory-contact.php';
 // TAXONOMIES
 include 'taxonomies/sedoo-wppl-inventrory-instance-wp.php';
-include 'taxonomies/sedoo-wppl-inventrory-type-de-site.php';
+include 'taxonomies/sedoo-wppl-inventory-type-de-site.php';
 include 'taxonomies/sedoo-wppl-inventrory-structure.php';
 include 'taxonomies/sedoo-wppl-inventrory-server.php';
 // AUTRE
