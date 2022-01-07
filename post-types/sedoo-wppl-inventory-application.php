@@ -33,7 +33,7 @@ function sedoo_wppl_inventory_application_init() {
 	  'menu_position'         => null,
 	  'menu_icon'             => 'dashicons-welcome-view-site',
 	  'show_in_rest'          => true,
-	  'rest_base'             => 'axe',
+	  'rest_base'             => 'app',
 	  'rest_controller_class' => 'WP_REST_Posts_Controller',
   ) );	
 }

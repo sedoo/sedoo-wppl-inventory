@@ -1,5 +1,8 @@
 <?php 
 
+// **********************
+// Applications acf-field 
+// **********************
 if( function_exists('acf_add_local_field_group') ):
 
     acf_add_local_field_group(array(
@@ -158,5 +161,132 @@ if( function_exists('acf_add_local_field_group') ):
     ));
     
     endif;		
+    // ************************
+    // Contact acf fields
+    // ************************
 
+    if( function_exists('acf_add_local_field_group') ):
+
+        acf_add_local_field_group(array(
+            'key' => 'group_61d721429210e',
+            'title' => 'CPT Fields Contacts',
+            'fields' => array(
+                array(
+                    'key' => 'field_61d72153b3be6',
+                    'label' => 'Nom',
+                    'name' => 'inventory_contact_name',
+                    'type' => 'text',
+                    'instructions' => 'Saisissez le nom du contact',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => 'FLANTIER',
+                    'prepend' => '',
+                    'append' => '',
+                    'maxlength' => 40,
+                ),
+                array(
+                    'key' => 'field_61d72199b3be7',
+                    'label' => 'Prénom',
+                    'name' => 'inventory_contact_first_name',
+                    'type' => 'text',
+                    'instructions' => 'Saisissez le prénom du contact',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => 'Noël',
+                    'prepend' => '',
+                    'append' => '',
+                    'maxlength' => '',
+                ),
+                array(
+                    'key' => 'field_61d721d4b3be8',
+                    'label' => 'mail',
+                    'name' => 'inventory_contact_mail',
+                    'type' => 'email',
+                    'instructions' => 'Saisissez le mail du contact',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => 'flantier117@gmail.com',
+                    'prepend' => '',
+                    'append' => '',
+                ),
+                array(
+                    'key' => 'field_61d7224bb3be9',
+                    'label' => 'Téléphone',
+                    'name' => 'inventory_contact_phone',
+                    'type' => 'number',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => '+33 (0)6 00 00 00 00',
+                    'prepend' => '',
+                    'append' => '',
+                    'min' => '',
+                    'max' => '',
+                    'step' => '',
+                ),
+                array(
+                    'key' => 'field_61d72296b3bea',
+                    'label' => 'Structure',
+                    'name' => 'inventory_contact_structure',
+                    'type' => 'text',
+                    'instructions' => 'Saisissez la structure du contact',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => 'CNRS',
+                    'prepend' => '',
+                    'append' => '',
+                    'maxlength' => '',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'sedoo_invent_contact',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ));
+        
+        endif;		
 ?>
