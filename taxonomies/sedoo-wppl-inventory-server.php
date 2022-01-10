@@ -17,9 +17,10 @@
             'popular_items' => 'Servers les plus utilisées'
             ),
             'hierarchical' => true,
+            'show_in_rest' => true,
             )
         );
-        register_taxonomy_for_object_type( 'servers', 'sedoo_inventory_app' );
+        register_taxonomy_for_object_type( 'server', 'sedoo_inventory_app' );
     }
     add_action( 'init', 'sedoo_wppl_inventory_server_init' );
 ?>

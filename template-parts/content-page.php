@@ -11,19 +11,22 @@ global $taxo_names_typologie;
 global $taxo_names_thematiques;
 global $taxo_names_offre_services;
 
-$url_app = get_field('sedoo_inventory_url_app');
-$url_backoff = get_field('sedoo_inventory_url_backoff');
-$contact_app = get_field('sedoo_inventory_contact_app');
-$ldap_connect = get_field('sedoo_inventory_ldap_connect');
-$date_app = get_field('sedoo_inventory_date_app');
-$password_app = get_field('sedoo_inventory_password_app');
-$image_app = get_field('sedoo_inventory_image_app');
+$app_url = get_field('sedoo_inventory_url_app');
+$app_url_backoff = get_field('sedoo_inventory_url_backoff');
+$app_contact = get_field('sedoo_inventory_contact_app');
+$app_ldap_connect = get_field('sedoo_inventory_ldap_connect');
+$app_date = get_field('sedoo_inventory_date_app');
+$app_password = get_field('sedoo_inventory_password_app');
+$app_image = get_field('sedoo_inventory_image_app');
+
 $contact_name = get_field('inventory_contact_name');
 $contact_first_name = get_field('inventory_contact_first_name');
 $contact_mail = get_field('inventory_contact_mail');
 $contact_phone = get_field('inventory_contact_phone');
 $contact_structure = get_field('inventory_contact_structure');
 $contact_img = the_post_thumbnail();
+
+
 ?>
 
 <div id="primary" class="content-area project-content-page">
@@ -31,32 +34,56 @@ $contact_img = the_post_thumbnail();
             <main id="main" class="site-main">
                 <article id="post-<?php the_ID();?>">	
                     <header>
-						
+						<?php
+						// get all of the terms for this post, with the taxonomy of categories-projets.
+						$app_taxo_instance = get_the_terms( $post->ID, 'instance' ); 
+						$app_taxo_structure = get_the_terms( $post->ID, 'structure' ); 
+						$app_taxo_type_de_site = get_the_terms( $post->ID, 'type_de_site' ); 
+						$app_taxo_server = get_the_terms( $post->ID, 'server' ); 
+						?>
 						<h1><?php the_title(); ?></h1>
 						<!-- Application -->
-						<?php if($url_app) { ?>
-						<p class="infoApptext"><b>URL: </b><span class="colorGrey"><a href="<?php echo $url_app; ?>" title="lien vers <?php echo $url_app; ?> "><?php echo $url_app; ?></a></span></p>
+						<?php if($app_url) { ?>
+						<p class="infoApptext"><b>URL: </b><span class="colorGrey"><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
 						<?php } ?>
 						
-						<?php if($url_backoff) { ?>
-						<p class="infoApptext"><b>BACKOFFICE: </b><span class="colorGrey"><a href="<?php echo $url_backoff; ?>" title="lien vers <?php echo $url_backoff; ?>" ><?php echo $url_backoff; ?></a></span></p>
+						<?php if($app_url_backoff) { ?>
+						<p class="infoApptext"><b>BACKOFFICE: </b><span class="colorGrey"><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
 						<?php } ?>
 						
-						<?php if($contact_app) { ?>
-						<p class="infoApptext"><b>CONTACT: </b><span class="colorGrey"><?php echo $contact_app; ?></span></p>
+						<?php if($app_contact) { ?>
+						<p class="infoApptext"><b>CONTACT: </b><span class="colorGrey"><?php echo $app_contact; ?></span></p>
 						<?php } ?>
 
-						<?php if($date_app) { ?>
-						<p class="infoApptext"><b>DATE: </b><span class="colorGrey"><?php echo $date_app; ?></span></p>
+						<?php if($app_date) { ?>
+						<p class="infoApptext"><b>DATE: </b><span class="colorGrey"><?php echo $app_date; ?></span></p>
 						<?php } ?>
 						
-						<?php if($password_app) { ?>
-						<p class="infoApptext"><b>MOT DE PASSE: </b><span class="colorGrey"><?php echo $password_app; ?></span></p>
+						<?php if($app_password) { ?>
+						<p class="infoApptext"><b>MOT DE PASSE: </b><span class="colorGrey"><?php echo $app_password; ?></span></p>
+						<?php } ?>
+						
+						<?php if($app_taxo_instance) { ?>
+						<p class="infoApptext"><b>INSTANCE : </b><span class="colorGrey"><?php  foreach ( $app_taxo_instance as $term ) {echo $term->name;}?>
+</span></p>
+						<?php } ?>
+						
+						<?php if($app_taxo_structure) { ?>
+						<p class="infoApptext"><b>STRUCTURE : </b><span class="colorGrey"><?php  foreach ( $app_taxo_structure as $term ) {echo $term->name;}?></span></p>
 						<?php } ?>
 
-						<?php if($image_app) { ?>
+						<?php if($app_taxo_type_de_site) { ?>
+						<p class="infoApptext"><b>TYPE DE SITE : </b><span class="colorGrey"><?php  foreach ( $app_taxo_type_de_site as $term ) {echo $term->name;}?></span></p>
+						<?php } ?>
+						
+						<?php if($app_taxo_server) { ?>
+						<p class="infoApptext"><b>SERVEUR : </b><span class="colorGrey"><?php  foreach ( $app_taxo_server as $term ) {echo $term->name;}?></span></p>
+						<?php } ?>
+                       	
+
+						<?php if($app_image) { ?>
 							<figure class="imgApp">
-								<img src="<?php echo $image_app; ?>">
+								<img src="<?php echo $app_image; ?>">
 							</figure>
 						<?php } ?>
 						<!-- contact -->
@@ -99,18 +126,18 @@ $contact_img = the_post_thumbnail();
 					
 					</section>
 					<?php 
-						// if($contact_app || $ldap_connect) {
+						// if($app_contact || $app_ldap_connect) {
 						// 	echo '<section class="sedoo-project-section-urls">';
 						// 	echo '<h2> URL </h2>';
 						// }
-						// if($contact_app) {
-						// 	echo '<a href="'.$contact_app.'">'.__( 'Data access', 'sedoo-wppl-projects' ). '</a>';
+						// if($app_contact) {
+						// 	echo '<a href="'.$app_contact.'">'.__( 'Data access', 'sedoo-wppl-projects' ). '</a>';
 						// }
-						// if($ldap_connect) {
-						// 	echo '<a href="'.$ldap_connect.'">'.__( 'Official website', 'sedoo-wppl-projects' ). '</a>';	
+						// if($app_ldap_connect) {
+						// 	echo '<a href="'.$app_ldap_connect.'">'.__( 'Official website', 'sedoo-wppl-projects' ). '</a>';	
 						// }
 
-						// if($contact_app || $ldap_connect) {	
+						// if($app_contact || $app_ldap_connect) {	
 						// 	echo '</section>';
 						// }
 					?>
