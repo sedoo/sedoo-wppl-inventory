@@ -16,7 +16,8 @@
             'search_items' => 'Rechercher parmi les instances',
             'popular_items' => 'Instances les plus utilisées'
             ),
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_rest' => true,
             )
         );
         register_taxonomy_for_object_type( 'instance', 'sedoo_inventory_app' );

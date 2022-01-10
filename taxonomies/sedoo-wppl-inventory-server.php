@@ -16,7 +16,7 @@
             'search_items' => 'Rechercher parmi les servers',
             'popular_items' => 'Servers les plus utilisées'
             ),
-            'hierarchical' => true
+            'hierarchical' => true,
             )
         );
         register_taxonomy_for_object_type( 'servers', 'sedoo_inventory_app' );

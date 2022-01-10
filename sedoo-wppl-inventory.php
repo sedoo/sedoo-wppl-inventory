@@ -25,10 +25,11 @@ function sedoo_wppl_inventory_scripts() {
 include 'post-types/sedoo-wppl-inventory-application.php';
 include 'post-types/sedoo-wppl-inventory-contact.php';
 // TAXONOMIES
-include 'taxonomies/sedoo-wppl-inventrory-instance-wp.php';
+include 'taxonomies/sedoo-wppl-inventory-structure.php';
+include 'taxonomies/sedoo-wppl-inventory-server.php';
+include 'taxonomies/sedoo-wppl-inventory-instance-wp.php';
 include 'taxonomies/sedoo-wppl-inventory-type-de-site.php';
-include 'taxonomies/sedoo-wppl-inventrory-structure.php';
-include 'taxonomies/sedoo-wppl-inventrory-server.php';
+
 // AUTRE
 include 'sedoo-wppl-inventory-display.php';
 include 'inc/sedoo-wppl-inventory-acf-fields.php';

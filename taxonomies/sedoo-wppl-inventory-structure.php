@@ -5,7 +5,7 @@
         register_taxonomy('structure','sedoo_inventory_app', array(
             'label' => 'Structures',
             'labels' => array(
-            'name' => 'Structures',
+            'name' => 'structures',
             'singular_name' => 'Structure',
             'all_items' => 'Toutes les Structures',
             'edit_item' => 'Éditer la Structure',
@@ -16,7 +16,8 @@
             'search_items' => 'Rechercher parmi les Structures',
             'popular_items' => 'Structures les plus utilisées'
             ),
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_rest' => true,
             )
         );
         register_taxonomy_for_object_type( 'structure', 'sedoo_inventory_app' );

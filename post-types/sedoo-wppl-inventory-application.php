@@ -35,6 +35,7 @@ function sedoo_wppl_inventory_application_init() {
 	  'show_in_rest'          => true,
 	  'rest_base'             => 'app',
 	  'rest_controller_class' => 'WP_REST_Posts_Controller',
+	 
   ) );	
 }
 add_action( 'init', 'sedoo_wppl_inventory_application_init' );

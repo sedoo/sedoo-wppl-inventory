@@ -16,7 +16,8 @@
             'search_items' => 'Rechercher parmi les types de site',
             'popular_items' => 'Types de site les plus utilisées'
             ),
-            'hierarchical' => true
+            'hierarchical' => true,
+            'show_in_rest' => true,
             )
         );
         register_taxonomy_for_object_type( 'type_de_site', 'sedoo_inventory_app' );
