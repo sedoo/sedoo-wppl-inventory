@@ -3,7 +3,9 @@
  * template for Research Teams CPT (show post / platform associate by theme taxonomy)
 */
 
-get_header(); 
+get_header(); ?>
+
+<?php
 
 while ( have_posts() ) : the_post();
 ?>

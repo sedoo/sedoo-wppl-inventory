@@ -34,3 +34,4 @@ include 'taxonomies/sedoo-wppl-inventory-type-de-site.php';
 include 'sedoo-wppl-inventory-display.php';
 include 'inc/sedoo-wppl-inventory-acf-fields.php';
 include 'inc/sedoo-wppl-inventory-acf.php';
+include 'inc/sedoo-wppl-inventory-functions.php';
