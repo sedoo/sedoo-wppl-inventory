@@ -16,7 +16,11 @@
 // LOAD CSS & SCRIPTS 
 function sedoo_wppl_inventory_scripts() {
     wp_register_style( 'prefix-style', plugins_url('css/sedoo_inventory.css', __FILE__) );
+    wp_register_style( 'new-style', plugins_url('css/HOCB/hocb-standard.css', __FILE__) );
+    wp_register_style( 'new-style-2', plugins_url('css/HOCB/hocb-custom-1.css', __FILE__) );
     wp_enqueue_style( 'prefix-style' );
+    wp_enqueue_style( 'new-style' );
+    wp_enqueue_style( 'new-style-2' );
 }
  add_action('wp_enqueue_scripts','sedoo_wppl_inventory_scripts');
 

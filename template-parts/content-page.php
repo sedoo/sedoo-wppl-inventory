@@ -63,6 +63,10 @@ $contact_img = the_post_thumbnail();
 						<p class="infoApptext"><b>MOT DE PASSE: </b><span class="colorGrey"><?php echo $app_password; ?></span></p>
 						<?php } ?>
 						
+						<?php if($app_ldap_connect) { ?>
+           				 <span class="inlineBlockMid"><b>LDAP:</b><?php if ($app_ldap_connect == 1) : ?> Connecté au LDAP <?php else : ?> Non Connecté au LDAP <?php endif; ?>
+						<?php } ?>
+
 						<?php if($app_taxo_instance) { ?>
 						<p class="infoApptext"><b>INSTANCE : </b><span class="colorGrey"><?php  foreach ( $app_taxo_instance as $term ) {echo $term->name;}?>
 </span></p>

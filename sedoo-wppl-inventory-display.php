@@ -20,5 +20,14 @@
         }
         return $single_template;
     }
-
+    /** Displays template part for the 'archive sedoo_inventory_application` archive type.*/
+    add_filter ( 'archive_template', 'sedoo_application_inventory_archive' );
+    function sedoo_application_inventory_archive($archive_template) {
+        global $post;
+        
+        if (is_archive() && get_post_type($post) == 'sedoo_inventory_app') {
+            $archive_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-application.php';
+        }
+        return $archive_template;
+    }
 ?>
