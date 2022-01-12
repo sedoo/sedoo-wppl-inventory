@@ -7,25 +7,15 @@
 <?php endwhile; endif; ?>
 <div class="content">
 	<div class="container">
-		<?php
-			$taxonomy = 'structure';
 
-			$term_args = array(
-			 'orderby' => 'name',
-			 'order' => 'ASC'
-			 );
-
-			$terms = get_terms($taxonomy,$term_args);
-
-			if ($terms) { foreach($terms as $term) {
-		?>
 
 		<?php 
 			$args = array(
 			'post_type' => 'sedoo_inventory_app',
+			'post_status' => 'publish',
 			'tax_query' => array(
-			array(
-				'taxonomy' => 'structure',
+				array(
+				
 				'terms' => array($term->term_id),
 				'include_children' => true,
 				'operator' => 'IN'
@@ -47,8 +37,7 @@
 				<?php endwhile; ?>
 			</div>
 
-		<?php } 
-		 } } ?>
+		<?php } ?>
 		<?php wp_reset_query(); ?>
 	</div>
 </div>
