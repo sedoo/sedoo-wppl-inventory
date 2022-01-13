@@ -6,11 +6,20 @@
  *
  * @package labs_by_Sedoo
  */
-
+global $cpt_names_application;
+global $cpt_names_contact;
 global $taxo_names_instance;
 global $taxo_names_server;
 global $taxo_names_structure;
 global $taxo_names_type_de_site;
+
+$args = array(
+    'numberposts' => -1,
+    'post_type'   => 'sedoo_invent_contact',
+    'order' => 'ASC',
+);
+    
+$contacts = get_posts( $args );
 
 get_header();
 
@@ -29,33 +38,23 @@ get_header();
 			}
 			?>	
 			<h1 class="page-title">
-				APPLICATION
+				CONTACT
 			</h1>
 
-		<?php
-			$args = array(
-				'numberposts' => -1,
-				'post_type'   => 'sedoo_inventory_app',
-				'order' => 'ASC',
-			);
-			   
-			$applications = get_posts( $args );
-
-			?>
+		
 			<section class="post-wrapper sedoo_blocks_listearticle">
-				<?php 
-					foreach($applications as $projet) {
-						
-					?>
-					<article id="post-<?php echo $projet->ID; ?>" <?php post_class('post'); ?>>
-						<a href="<?php echo get_the_permalink($projet->ID); ?>"></a>
+
+				<?php foreach($contacts as $contact) {?>
+
+					<article id="post-<?php echo $contact->ID; ?>" <?php post_class('post'); ?>>
+						<a href="<?php echo get_permalink($contact->ID); ?>"></a>
 						<header class="entry-header">
 							<figure>
 								<?php 
-								if (get_the_post_thumbnail_url($projet->ID)) {
+								if (get_the_post_thumbnail_url($contact->ID)) {
 									?>
 									<figure>
-										<img src="<?php echo get_the_post_thumbnail_url($projet->ID); ?>" alt="">  
+										<img src="<?php echo get_the_post_thumbnail_url($contact->ID); ?>" alt="">  
 									</figure>
 									<?php 
 								} else {
@@ -65,17 +64,17 @@ get_header();
 						</header><!-- .entry-header -->
 						<div class="group-content">
 							<div class="entry-content">
-								<h3><?php echo get_the_title($projet->ID); ?></h3>
+								<h3><?php echo get_the_title($contact->ID); ?></h3>
 								<div class="tag <?php echo $taxo_names_thematiques; ?>">
 									<?php 
-										$thematiques = get_the_terms( $projet->ID, $taxo_names_thematiques );
+										$thematiques = get_the_terms( $contact->ID, $taxo_names_thematiques );
 										foreach($thematiques as $thematique) {
 											echo '<a class="them_link" href="'.get_term_link($thematique->term_id).'">'.esc_html($thematique->name).'</a>';   
 										}
 									?>
 								</div>
 								<?php 
-									echo get_the_excerpt($projet->ID); 								
+									echo get_the_excerpt($contact->ID); 								
 								?>
 							</div><!-- .entry-content -->
 							<footer class="entry-footer">

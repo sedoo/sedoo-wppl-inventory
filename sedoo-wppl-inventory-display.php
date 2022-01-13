@@ -29,11 +29,17 @@
         global $taxo_names_server;
         global $taxo_names_structure;
         global $taxo_names_type_de_site;
+        global $cpt_names_application;
+        global $cpt_names_contact;
+
+
         if(is_tax($taxo_names_instance) || is_tax($taxo_names_server) || is_tax($taxo_names_structure) || is_tax($taxo_names_type_de_site)) {
             $taxo_template = plugin_dir_path( __FILE__ ) . 'taxonomie-inventory-template.php';
         }
-        elseif ( is_post_type_archive ( 'sedoo_wppl_project' ) ) {
-            $taxo_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-template.php';
+        elseif ( is_post_type_archive ( $cpt_names_application ) ) {
+            $taxo_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-app-template.php';
+        }elseif ( is_post_type_archive ( $cpt_names_contact ) ) {
+            $taxo_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-contact-template.php';
         }
         return $taxo_template;
     }

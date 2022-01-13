@@ -50,7 +50,7 @@ function sedoo_inventory_register_contact_cpt() {
 		'has_archive'           => true,
 		'rewrite'            	=> array( 'slug' => 'contacts' ),
 		'show_in_rest'			=> true,
-        'rest_base'             => 'contacts',
+        'rest_base'             => 'contact',
         'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true

@@ -27,7 +27,7 @@
  $taxo_names_server = 'sedoo_inventory_server_app';
  $taxo_names_type_dapp = 'sedoo_inventory_type_app';
  $cpt_names_application = 'sedoo_inventory_app';
- $cpt_names_contact = 'sedoo_inventory_contact';
+ $cpt_names_contact = 'sedoo_invent_contact';
 
 // LOAD CSS & SCRIPTS 
 function sedoo_wppl_inventory_scripts() {
