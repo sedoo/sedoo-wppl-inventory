@@ -1,26 +1,49 @@
 <?php
     
-    function sedoo_inventory_structure_init() {
-    
-        register_taxonomy('structure','sedoo_inventory_app', array(
-            'label' => 'Structures',
-            'labels' => array(
-            'name' => 'structures',
-            'singular_name' => 'Structure',
-            'all_items' => 'Toutes les Structures',
-            'edit_item' => 'Éditer la Structure',
-            'view_item' => 'Voir la Structure',
-            'update_item' => 'Mettre à jour la Structure',
-            'add_new_item' => 'Ajouter une Structure',
-            'new_item_name' => 'Nouvelle Structure',
-            'search_items' => 'Rechercher parmi les Structures',
-            'popular_items' => 'Structures les plus utilisées'
-            ),
-            'hierarchical' => true,
-            'show_in_rest' => true,
-            )
-        );
-        register_taxonomy_for_object_type( 'structure', 'sedoo_inventory_app' );
-    }
-    add_action( 'init', 'sedoo_inventory_structure_init' );
+//////////////////////
+// register structure tax
+function sedoo_inventory_register_structure_tax() {
+
+	global $taxo_names_structure;
+	global $cpt_names_application;
+
+	$labels = array(
+		'name'                       => _x( 'Structures', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Structure', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Structures', 'text_domain' ),
+		'all_items'                  => __( 'All Items', 'text_domain' ),
+		'parent_item'                => __( 'Parent Item', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Item Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Item', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Item', 'text_domain' ),
+		'update_item'                => __( 'Update Item', 'text_domain' ),
+		'view_item'                  => __( 'View Item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
+		'popular_items'              => __( 'Popular Items', 'text_domain' ),
+		'search_items'               => __( 'Search Items', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+		'no_terms'                   => __( 'No items', 'text_domain' ),
+		'items_list'                 => __( 'Items list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_in_rest'				 => true,
+		'show_ui'                    => true,        
+		'rewrite'           => array( 'slug' => 'structures' ),
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( $taxo_names_structure, array( $cpt_names_application ), $args );
+
+}
+add_action( 'init', 'sedoo_inventory_register_structure_tax', 0 );
+
 ?>
+

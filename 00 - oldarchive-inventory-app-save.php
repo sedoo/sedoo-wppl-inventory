@@ -21,7 +21,7 @@ $contact_img = the_post_thumbnail();
 
 <main class="flexRow"> 
   
-  <div class="projets flexRow flexWrap padding100 bgColorDarkModeMain">
+  <div class="inventory flexRow flexWrap padding100 bgColorDarkModeMain">
     <?php if (have_posts()) : ?>
   
       <?php while (have_posts()) : the_post(); ?>

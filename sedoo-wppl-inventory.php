@@ -10,17 +10,29 @@
  * Version:         0.1.0
  * GitHub Plugin URI: sedoo/sedoo-wppl-inventory
  * GitHub Branch:     master
- * @package         Sedoo_Wppl_Inventory
  */
+
+ // VARIABLES GLOBALES POUR CPT NAMES ET CUSTOM TAXONOMY
+ global $cpt_names_application;
+ global $cpt_names_contact;
+
+ global $taxo_names_instance;
+ global $taxo_names_structure;
+ global $taxo_names_server;
+ global $taxo_names_type_dapp;
+
+
+ $taxo_names_instance = 'sedoo_inventory_instance_app';
+ $taxo_names_structure = 'sedoo_inventory_structure_app';
+ $taxo_names_server = 'sedoo_inventory_server_app';
+ $taxo_names_type_dapp = 'sedoo_inventory_type_app';
+ $cpt_names_application = 'sedoo_inventory_app';
+ $cpt_names_contact = 'sedoo_inventory_contact';
 
 // LOAD CSS & SCRIPTS 
 function sedoo_wppl_inventory_scripts() {
     wp_register_style( 'prefix-style', plugins_url('css/sedoo_inventory.css', __FILE__) );
-    wp_register_style( 'new-style', plugins_url('css/HOCB/hocb-standard.css', __FILE__) );
-    wp_register_style( 'new-style-2', plugins_url('css/HOCB/hocb-custom-1.css', __FILE__) );
     wp_enqueue_style( 'prefix-style' );
-    wp_enqueue_style( 'new-style' );
-    wp_enqueue_style( 'new-style-2' );
 }
  add_action('wp_enqueue_scripts','sedoo_wppl_inventory_scripts');
 
@@ -38,4 +50,10 @@ include 'taxonomies/sedoo-wppl-inventory-type-de-site.php';
 include 'sedoo-wppl-inventory-display.php';
 include 'inc/sedoo-wppl-inventory-acf-fields.php';
 include 'inc/sedoo-wppl-inventory-acf.php';
-include 'inc/sedoo-wppl-inventory-functions.php';
+//include 'inc/sedoo-wppl-inventory-functions.php';
+
+// LOAD LANGUAGES FILES
+function sedoo_inventory_load_language() {
+    load_plugin_textdomain( 'sedoo-wppl-inventory', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'plugins_loaded', 'sedoo_inventory_load_language' );

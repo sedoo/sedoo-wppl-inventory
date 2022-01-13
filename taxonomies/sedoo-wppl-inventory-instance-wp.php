@@ -1,26 +1,50 @@
 <?php
     
-    function sedoo_wppl_inventory_instance_init() {
-    
-        register_taxonomy('instance','sedoo_inventory_app', array(
-            'label' => 'instances',
-            'labels' => array(
-            'name' => 'instances',
-            'singular_name' => 'instance',
-            'all_items' => 'Toutes les instances',
-            'edit_item' => 'Éditer l\'instance',
-            'view_item' => 'Voir l\'instance',
-            'update_item' => 'Mettre à jour l\'instance',
-            'add_new_item' => 'Ajouter une instance',
-            'new_item_name' => 'Nouvelle instance',
-            'search_items' => 'Rechercher parmi les instances',
-            'popular_items' => 'Instances les plus utilisées'
-            ),
-            'hierarchical' => true,
-            'show_in_rest' => true,
-            )
-        );
-        register_taxonomy_for_object_type( 'instance', 'sedoo_inventory_app' );
-    }
-    add_action( 'init', 'sedoo_wppl_inventory_instance_init' );
+//////////////////////
+// register thematique tax
+function sedoo_inventory_register_instance_tax() {
+
+	global $taxo_names_instance;
+	global $cpt_names_application;
+
+	$labels = array(
+		'name'                       => _x( 'Instances', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Instance', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Instances', 'text_domain' ),
+		'all_items'                  => __( 'All Items', 'text_domain' ),
+		'parent_item'                => __( 'Parent Item', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
+		'new_item_name'              => __( 'New Item Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Item', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Item', 'text_domain' ),
+		'update_item'                => __( 'Update Item', 'text_domain' ),
+		'view_item'                  => __( 'View Item', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'text_domain' ),
+		'popular_items'              => __( 'Popular Items', 'text_domain' ),
+		'search_items'               => __( 'Search Items', 'text_domain' ),
+		'not_found'                  => __( 'Not Found', 'text_domain' ),
+		'no_terms'                   => __( 'No items', 'text_domain' ),
+		'items_list'                 => __( 'Items list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_in_rest'				 => true,
+		'show_ui'                    => true,        
+		'rewrite'           => array( 'slug' => 'instances' ),
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( $taxo_names_instance, array( $cpt_names_application ), $args );
+
+}
+add_action( 'init', 'sedoo_inventory_register_instance_tax', 0 );
+
+
 ?>
+

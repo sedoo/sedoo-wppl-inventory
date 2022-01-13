@@ -24,7 +24,7 @@ $contact_first_name = get_field('inventory_contact_first_name');
 $contact_mail = get_field('inventory_contact_mail');
 $contact_phone = get_field('inventory_contact_phone');
 $contact_structure = get_field('inventory_contact_structure');
-$contact_img = the_post_thumbnail();
+$contact_img = get_the_post_thumbnail_url();
 
 
 ?>
