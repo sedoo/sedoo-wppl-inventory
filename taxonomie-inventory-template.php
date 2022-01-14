@@ -6,6 +6,12 @@
  *
  * @package labs_by_Sedoo
  */
+global $cpt_names_application;
+global $cpt_names_contact;
+global $taxo_names_instance;
+global $taxo_names_server;
+global $taxo_names_structure;
+global $taxo_names_type_de_site;
 
 get_header();
 ?>
@@ -71,9 +77,7 @@ function sedoo_project_display_list_of_projects($projects, $term) { ?>
             /// START MAIN PROJECTS
             $args = array(
 				'numberposts' => -1,
-				'post_type'   => 'sedoo_wppl_project',
-				'meta_key' => 'sedoo_project_type_of_project',
-				'meta_value' => 'principal',
+				'post_type'   => $cpt_names_application,
                 'tax_query' => array(
                     array(
                       'taxonomy' => get_queried_object()->taxonomy,
@@ -90,7 +94,7 @@ function sedoo_project_display_list_of_projects($projects, $term) { ?>
             <?php 
             $args = array(
 				'numberposts' => -1,
-				'post_type'   => 'sedoo_wppl_project',
+				'post_type'   => $cpt_names_application,
                 'meta_query' => array(
                     array(
                         'key' => 'sedoo_project_type_of_project',

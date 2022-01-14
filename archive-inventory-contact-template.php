@@ -13,9 +13,11 @@ global $taxo_names_server;
 global $taxo_names_structure;
 global $taxo_names_type_de_site;
 
+$currentTaxo = 	get_queried_object()->name;
+
 $args = array(
     'numberposts' => -1,
-    'post_type'   => 'sedoo_invent_contact',
+    'post_type'   => $currentTaxo ,
     'order' => 'ASC',
 );
     
@@ -38,7 +40,7 @@ get_header();
 			}
 			?>	
 			<h1 class="page-title">
-				CONTACT
+			<?php echo get_queried_object()->name; ?>
 			</h1>
 
 		

@@ -91,7 +91,6 @@ get_header();
 								<?php // Get rid of the other data stored in the object, since it's not needed
 								unset($structure);
 								} } ?>
-								
 							
 								<!-- SERVER -->
 								<?php   // Get terms for post
