@@ -96,6 +96,13 @@ function sedoo_project_display_list_of_projects($applications, $term) { ?>
             ?>
 
 		</main><!-- #main -->
+      
+
+        <?php ?>
+
+    
+
+
 	</div><!-- #primary -->
 
 <?php

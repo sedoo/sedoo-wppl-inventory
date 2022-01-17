@@ -19,12 +19,18 @@ $args = array(
 	'post_type'   => 'sedoo_inventory_app',
 	'order' => 'ASC',
 );
+$args2 = array(
+	'post_type' => 'sedoo_inventory_app',
+);
+$query2 = new WP_Query($args2);
+
    
 $applications = get_posts( $args );
 
 get_header();
 
 ?>
+
 	<div id="content-area" class="wrapper application-archive-template  archives">
 		<main id="main" class="site-main">
 		<?php
@@ -38,10 +44,10 @@ get_header();
 			<?php
 			}
 			?>	
+			
 			<h1 class="page-title">
-				APPLICATION
+				APPLICATION 
 			</h1>
-
 			<section class="post-wrapper sedoo_blocks_listearticle">
 				<?php 
 					foreach($applications as $application) {
@@ -81,38 +87,32 @@ get_header();
 								} } ?>
 								
 								<!-- STRUCTURES -->
-								<?php   // Get terms for post
+								<?php
 								$structures = get_the_terms( $application->ID , $taxo_names_structure );
-								// Loop over each item since it's an array
 								if ( $structures != null ){?>
-								<?php foreach( $structures as $structure ) {
-								// Print the name method from $term which is an OBJECT? ?>
+								<?php foreach( $structures as $structure ) {?>
 								<li><strong>Structures :</strong> <a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></li>
-								<?php // Get rid of the other data stored in the object, since it's not needed
+								<?php 
 								unset($structure);
 								} } ?>
 							
 								<!-- SERVER -->
-								<?php   // Get terms for post
+								<?php
 								$servers = get_the_terms( $application->ID , $taxo_names_server );
-								// Loop over each item since it's an array
 								if ( $servers != null ){
-								foreach( $servers as $server ) {
-								// Print the name method from $term which is an OBJECT? ?>
+								foreach( $servers as $server ) { ?>
 								<li><strong>Server :</strong> <a href="<?php print $server->slug ?>"><?php echo $server->name ;?></li>
-								<?php // Get rid of the other data stored in the object, since it's not needed
+								<?php
 								unset($server);
 								} } ?>
 
 								<!-- TYPE DE SITE -->
-								<?php   // Get terms for post
+								<?php
 								$typedapps = get_the_terms( $application->ID , $taxo_names_type_de_site );
-								// Loop over each item since it's an array
 								if ( $typedapps != null ){
-								foreach( $typedapps as $typedapp ) {
-								// Print the name method from $term which is an OBJECT? ?>
+								foreach( $typedapps as $typedapp ) {?>
 								<li><strong>Type de site :</strong> <a href="<?php print $typedapp->slug ?>"><?php echo $typedapp->name ;?></li>
-								<?php // Get rid of the other data stored in the object, since it's not needed
+								<?php 
 								unset($typedapp);
 								} } ?>
 								</ul>
@@ -128,6 +128,23 @@ get_header();
 				?>
 			</section>
 		</main><!-- #main -->
+		<aside>
+		<h1 class="page-title">
+				Liste
+			</h1>
+			<section>
+			
+			<?php 
+				while( $query2->have_posts() ) {
+					$query2->the_post();
+					echo '<li>' . get_the_title() . '</li>';
+				}
+				// Restore original Post Data
+				wp_reset_postdata();
+			?>
+
+			</section>
+		</aside>
 	</div><!-- #primary -->
 
 <?php

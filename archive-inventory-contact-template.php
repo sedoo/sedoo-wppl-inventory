@@ -40,7 +40,7 @@ get_header();
 			}
 			?>	
 			<h1 class="page-title">
-			<?php echo get_queried_object()->name; ?>
+			CONTACTS
 			</h1>
 
 		

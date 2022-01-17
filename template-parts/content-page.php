@@ -138,12 +138,6 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						<p><b>Structure: </b><span><?php echo $contact_structure; ?></span></p>
 						<?php } ?>
 
-						<?php if($contact_img) { ?>
-							<figure class="imgApp">
-							<?php the_post_thumbnail(); ?>
-							</figure>
-						<?php } ?>
-
 					</section>
                     <section>
                         <?php the_content(); ?>
