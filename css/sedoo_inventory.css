@@ -1,4 +1,16 @@
 /**
-* CSS FOR SEDOO LABTOOLS
+* CSS FOR SEDOO INVENTORY
 * author : 
 */
+.inventory-single-content-page .wrapper-layout .inventoryInfoContener ul li:last-child {
+    margin-bottom: 20px;
+}
+.inventory-single-content-page .inventoryInfoContener p{
+    font-size:15px;
+}
+.inventory-single-content-page .inventoryInfoContener ul, .inventory-single-content-page .inventoryInfoContener li{
+    font-size:15px;
+    list-style-type: none;
+    padding: 0;
+    margin:0
+}
