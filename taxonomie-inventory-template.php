@@ -13,25 +13,41 @@ global $taxo_names_server;
 global $taxo_names_structure;
 global $taxo_names_type_de_site;
 
+
+$args = array(
+    'numberposts' => -1,
+    'post_type'   => $cpt_names_application,
+    'tax_query' => array(
+        array(
+            'taxonomy' => get_queried_object()->taxonomy,
+            'field' => 'id',
+            'terms' => get_queried_object()->term_id 
+        )
+        )
+);
+
+		
 get_header();
 ?>
 
 <?php 
 
 // THIS FUNCTION IS USED TO DISPLAY PROJECTS IN TAXO PAGES
-function sedoo_project_display_list_of_projects($projects, $term) { ?>
+function sedoo_project_display_list_of_projects($applications, $term) { ?>
+
     <!-- YOU ARE ON TAXONOMIE-INVENTORY-TEMPLATE.PHP -->
     <section class="post-wrapper sedoo_blocks_listearticle">
+
     <?php 
-        foreach($projects as $projet) {
+        foreach($applications as $application) {
         ?>
-        <article id="post-<?php echo $projet->ID; ?>" <?php post_class('post'); ?>>
-            <a href="<?php echo get_the_permalink($projet->ID); ?>"></a>
+        <article id="post-<?php echo $application->ID; ?>" <?php post_class('post'); ?>>
+            <a href="<?php echo get_the_permalink($application->ID); ?>"></a>
             <header class="entry-header">
                 <figure>
                     <?php 
-                    if (has_post_thumbnail($projet->ID)) {
-                        echo get_the_post_thumbnail($projet->ID);
+                    if (has_post_thumbnail($application->ID)) {
+                        echo get_the_post_thumbnail($application->ID);
                     } else {
                         labs_by_sedoo_catch_that_image();                
                     }
@@ -40,10 +56,10 @@ function sedoo_project_display_list_of_projects($projects, $term) { ?>
             </header><!-- .entry-header -->
             <div class="group-content">
                 <div class="entry-content">
-                    <h3><?php echo get_the_title($projet->ID); ?></h3>
+                    <h3><?php echo get_the_title($application->ID); ?></h3>
                     <p>
                     <?php 
-                        echo get_the_excerpt($projet->ID); 								
+                        echo get_the_excerpt($application->ID); 								
                     ?></p>
                 </div><!-- .entry-content -->
             </div>
@@ -72,52 +88,13 @@ function sedoo_project_display_list_of_projects($projects, $term) { ?>
 			<h1 class="page-title">
                 <?php echo get_queried_object()->name; ?>
 			</h1>
-            <?php 
-            
-            ///////
-            /// START MAIN PROJECTS
-            $args = array(
-				'numberposts' => -1,
-				'post_type'   => $cpt_names_application,
-                'tax_query' => array(
-                    array(
-                      'taxonomy' => get_queried_object()->taxonomy,
-                      'field' => 'id',
-                      'terms' => get_queried_object()->term_id // Where term_id of Term 1 is "1".
-                    )
-                  )
-			);
-			$mainprojects = get_posts( $args );
-            sedoo_project_display_list_of_projects($mainprojects, get_queried_object());
-			?>
 
-           
-            <?php 
-            $args = array(
-				'numberposts' => -1,
-				'post_type'   => $cpt_names_application,
-                'tax_query' => array(
-                    array(
-                      'taxonomy' => get_queried_object()->taxonomy,
-                      'field' => 'id',
-                      'terms' => get_queried_object()->term_id // Where term_id of Term 1 is "1".
-                    )
-                ),
-                'orderby' => array(
-                    'meta_value' => 'DESC',
-                    'title' => 'ASC',
-                )
-			);
+            <!-- DISPLAY THE TAXONOMY LISTE -->
+            <?php
+            $applicationFilter = get_posts( $args );
+            sedoo_project_display_list_of_projects($applicationFilter, get_queried_object());
+            ?>
 
-            /// END MAIN PROJECTS
-            ///////
-
-            ///////
-            /// SHOW SIDE PROJECTS
-			$sideprojects = get_posts( $args );
-            if($sideprojects) :
-                ?>
-           <?php endif; ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

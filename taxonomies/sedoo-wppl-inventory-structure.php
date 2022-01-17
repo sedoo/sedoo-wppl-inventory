@@ -4,7 +4,7 @@
 // register structure tax
 function sedoo_inventory_register_structure_tax() {
 
-	global $taxo_names_structure;
+	global $taxo_names_structure; 
 	global $cpt_names_application;
 
 	$labels = array(

@@ -44,33 +44,34 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
                     <header>
 					<!-- Application -->
 					<section class="inventoryInfoContener">
-						<?php if($app_url) { ?>
-						<p><b>URL: </b><span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
-						<?php } ?>
+						<?php if($app_url) : ?>
+						<p><b>URL : </b><span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
+						<?php endif; ?>
 						
-						<?php if($app_url_backoff) { ?>
-						<p><b>BACKOFFICE: </b><span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
-						<?php } ?>
+						<?php if($app_url_backoff) : ?>
+						<p><b>BACKOFFICE : </b><span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
+						<?php endif; ?>
 						
 						<?php if($app_contacts) :?>
 						<p>
-						<strong>CONTACT:</strong>
+						<strong>CONTACT :</strong>
 							<?php foreach( $app_contacts as $app_contact ): ?>
 							<a href="<?php echo get_permalink($app_contact->ID);?>">
 							<?php echo get_the_title($app_contact->ID); ?>
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
+						
 						</p>
 						<?php if($app_date) : ?>
-						<p><b>DATE DE PREMIERE MISE EN LIGNE: </b><span><?php echo $app_date; ?></span></p>
+						<p><b>DATE DE PREMIERE MISE EN LIGNE : </b><span><?php echo $app_date; ?></span></p>
 						<?php endif; ?>
 						
 						<?php if($app_password) : ?>
-						<p><b>MOT DE PASSE: </b><span><?php echo $app_password; ?></span></p>
+						<p><b>MOT DE PASSE : </b><span><?php echo $app_password; ?></span></p>
 						<?php endif; ?>
 						
 						<?php if($app_ldap_connect) : ?>
-           				 <p><b>LDAP:</b>
+           				 <p><b>LDAP :</b>
 						<?php if ($app_ldap_connect == 1) : ?> 
 						Connecté au LDAP <?php else : ?> Non Connecté au LDAP <?php endif; ?>
 						<?php endif; ?>
@@ -78,7 +79,7 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 
 						<?php if($instances) :?>
 						<p>
-						<strong>INSTANCE:</strong>
+						<strong>INSTANCE :</strong>
 							<?php foreach( $instances as $instance ): ?>
 							<a href="<?php echo get_term_link($instance->term_id);?>">
 							<?php echo esc_html($instance->name); ?>
@@ -88,7 +89,7 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						
 						<?php if($structures) :?>
 						<p>
-						<strong>STRUCTURE:</strong>
+						<strong>STRUCTURE :</strong>
 							<?php foreach( $structures as $structure ): ?>
 							<a href="<?php echo get_term_link($structure->term_id);?>">
 							<?php echo esc_html($structure->name); ?>
@@ -98,7 +99,7 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						
 						<?php if($typedapps) :?>
 						<p>
-						<strong>TYPE DE SITE:</strong>
+						<strong>TYPE DE SITE :</strong>
 							<?php foreach( $typedapps as $typedapp ): ?>
 							<a href="<?php echo get_term_link($typedapp->term_id);?>">
 							<?php echo esc_html($typedapp->name); ?>
