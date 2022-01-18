@@ -13,7 +13,7 @@ global $taxo_names_structure;
 global $taxo_names_type_dapp;
 
 
-
+//Les fields ACF Sigle application
 $app_url = get_field('sedoo_inventory_url_app');
 $app_url_backoff = get_field('sedoo_inventory_url_backoff');
 $app_contacts = get_field('sedoo_inventory_contact_app');
@@ -22,6 +22,7 @@ $app_date = get_field('sedoo_inventory_date_app');
 $app_password = get_field('sedoo_inventory_password_app');
 $app_image = get_field('sedoo_inventory_image_app');
 
+//Les fields ACF Sigle contact
 $contact_name = get_field('inventory_contact_name');
 $contact_first_name = get_field('inventory_contact_first_name');
 $contact_mail = get_field('inventory_contact_mail');
@@ -29,7 +30,7 @@ $contact_phone = get_field('inventory_contact_phone');
 $contact_structure = get_field('inventory_contact_structure');
 $contact_img = get_the_post_thumbnail_url();
 
-
+//Les taxonomy pour filtrer les applications
 $instances = get_the_terms( get_the_ID(), $taxo_names_instance );
 $servers = get_the_terms( get_the_ID(), $taxo_names_server );
 $structures = get_the_terms( get_the_ID(), $taxo_names_structure );
@@ -151,12 +152,68 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
             
 			</main><!-- #main -->
 
-				<aside class="contextual-sidebar project-sidebar">
+				<aside class="contextual-sidebar project-sidebar contextual-inventory-sidebar">
+
 					<section class="sedoo-project-section-date">
 					
 					</section>
 					<?php 
-						// if($app_contacts || $app_ldap_connect) {
+						if($app_contacts) : ?>
+						<section>
+							<h2> CONTACT(S)</h2>
+							<p>
+								<?php foreach( $app_contacts as $app_contact ): ?>
+								<a href="<?php echo get_permalink($app_contact->ID);?>">
+								<?php echo get_the_title($app_contact->ID); ?>
+								</a> &nbsp;<?php endforeach; ?>
+							</p>
+						</section>
+						<?php endif;
+
+						if($app_date) : ?>
+						<section>
+							<h2> DATE DE MISE EN LIGNE</h2>
+							<p><?php echo $app_date; ?></p>
+						</section>
+						<?php endif; ?>
+						
+						<?php if($typedapps) :?>
+							<section>
+						<h2>TYPE DE SITE :</h2>
+						<p>
+							<?php foreach( $typedapps as $typedapp ): ?>
+							<a href="<?php echo get_term_link($typedapp->term_id);?>">
+							<?php echo esc_html($typedapp->name); ?>
+							
+							</a> &nbsp;<?php endforeach; ?>
+						</p>
+							</section>
+						<?php endif; ?>
+						</p>
+
+						<?php if($structures) :?>
+						<section>
+							<h2>STRUCTURE :</h2>
+							<p><?php foreach( $structures as $structure ): ?>
+								<a href="<?php echo get_term_link($structure->term_id);?>">
+								<?php echo esc_html($structure->name); ?>
+								</a> &nbsp;<?php endforeach; ?>
+							</p>
+						</section>
+						<?php endif; ?>
+
+						<?php if($app_url || $app_url_backoff) :?>
+						<section>
+							<h2>URL :</h2>
+								<p>Site internet :<span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span><br/>
+								Back-Office :<span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
+							</p>
+						</section>
+						<?php endif; ?>
+
+						
+
+						<?php
 						// 	echo '<section class="sedoo-project-section-urls">';
 						// 	echo '<h2> URL </h2>';
 						// }
