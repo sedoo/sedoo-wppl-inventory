@@ -50,6 +50,7 @@ function sedoo_inventory_register_application_cpt() {
 		'has_archive'           => true,
 		'rewrite'            	=> array( 'slug' => 'applications' ),
 		'show_in_rest'			=> true,
+		'menu_icon'             => 'dashicons-welcome-view-site',
         'rest_base'             => 'applications',
         'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'exclude_from_search'   => false,

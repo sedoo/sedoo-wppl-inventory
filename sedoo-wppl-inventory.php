@@ -15,6 +15,7 @@
  // VARIABLES GLOBALES POUR CPT NAMES ET CUSTOM TAXONOMY
  global $cpt_names_application;
  global $cpt_names_contact;
+ global $cpt_names_structure;
 
  global $taxo_names_instance;
  global $taxo_names_structure;
@@ -28,6 +29,7 @@
  $taxo_names_type_dapp = 'sedoo_inventory_type_app';
  $cpt_names_application = 'sedoo_inventory_app';
  $cpt_names_contact = 'sedoo_invent_contact';
+ $cpt_names_structure = 'sedoo_invent_struct';
 
 // LOAD CSS & SCRIPTS 
 function sedoo_wppl_inventory_scripts() {
@@ -40,6 +42,7 @@ function sedoo_wppl_inventory_scripts() {
 // CPT - POST TYPES
 include 'post-types/sedoo-wppl-inventory-application.php';
 include 'post-types/sedoo-wppl-inventory-contact.php';
+include 'post-types/sedoo-wppl-inventory-structure.php';
 // TAXONOMIES
 include 'taxonomies/sedoo-wppl-inventory-structure.php';
 include 'taxonomies/sedoo-wppl-inventory-server.php';

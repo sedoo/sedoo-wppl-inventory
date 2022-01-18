@@ -1,15 +1,15 @@
 <?php 
 //////////////////////
 // Register contact post type
-function sedoo_inventory_register_contact_cpt() {
+function sedoo_inventory_register_structure_cpt() {
 
-	global $cpt_names_contact;
+	global $cpt_names_structure;
 
 	$labels = array(
-		'name'                  => _x( 'Contacts', 'Post Type General Name', 'text_domain' ),
-		'singular_name'         => _x( 'Contact', 'Post Type Singular Name', 'text_domain' ),
-		'menu_name'             => __( 'Contacts', 'text_domain' ),
-		'name_admin_bar'        => __( 'Contacts', 'text_domain' ),
+		'name'                  => _x( 'Structures', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Structure', 'Post Type Singular Name', 'text_domain' ),
+		'menu_name'             => __( 'Structures', 'text_domain' ),
+		'name_admin_bar'        => __( 'Structures', 'text_domain' ),
 		'archives'              => __( 'Item Archives', 'text_domain' ),
 		'attributes'            => __( 'Item Attributes', 'text_domain' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'text_domain' ),
@@ -35,29 +35,29 @@ function sedoo_inventory_register_contact_cpt() {
 		'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
 	);
 	$args = array(
-		'label'                 => __( 'Contacts', 'text_domain' ),
-		'description'           => __( 'Contacts Description', 'text_domain' ),
+		'label'                 => __( 'Structures', 'text_domain' ),
+		'description'           => __( 'Structures Description', 'text_domain' ),
 		'labels'                => $labels,
 		'supports'              => array('title', 'editor', 'thumbnail', 'revisions', 'excerpt'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
-		'menu_position'         => 25,
+		'menu_position'         => 5,
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
 		'has_archive'           => true,
-		'rewrite'            	=> array( 'slug' => 'contacts' ),
-		'menu_icon'             => 'dashicons-admin-users',
+		'rewrite'            	=> array( 'slug' => 'structures' ),
 		'show_in_rest'			=> true,
-        'rest_base'             => 'contact',
+		'menu_icon'             => 'dashicons-admin-home',
+        'rest_base'             => 'structures',
         'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true
 	);
-	register_post_type( $cpt_names_contact, $args );
+	register_post_type( $cpt_names_structure, $args );
 
 }
-add_action( 'init', 'sedoo_inventory_register_contact_cpt', 0 );
+add_action( 'init', 'sedoo_inventory_register_structure_cpt', 0 );
 ?>
