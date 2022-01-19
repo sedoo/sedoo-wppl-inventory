@@ -44,7 +44,7 @@ include 'post-types/sedoo-wppl-inventory-application.php';
 include 'post-types/sedoo-wppl-inventory-contact.php';
 include 'post-types/sedoo-wppl-inventory-structure.php';
 // TAXONOMIES
-include 'taxonomies/sedoo-wppl-inventory-structure.php';
+//include 'taxonomies/sedoo-wppl-inventory-structure.php';
 include 'taxonomies/sedoo-wppl-inventory-server.php';
 include 'taxonomies/sedoo-wppl-inventory-instance-wp.php';
 include 'taxonomies/sedoo-wppl-inventory-type-de-site.php';

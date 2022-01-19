@@ -53,7 +53,7 @@
             $taxo_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-app-template.php';
         }elseif ( is_post_type_archive ( $cpt_names_contact ) ) {
             $taxo_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-contact-template.php';
-        }elseif ( is_post_type_archive ( $$cpt_names_structure ) ) {
+        }elseif ( is_post_type_archive ( $cpt_names_structure ) ) {
             $taxo_template = plugin_dir_path( __FILE__ ) . 'archive-inventory-contact-template.php';
         }
         return $taxo_template;

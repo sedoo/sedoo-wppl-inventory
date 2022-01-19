@@ -89,6 +89,8 @@ get_header();
 				?>
 			</section>
 		</main><!-- #main -->
+		<aside>
+		</aside>
 	</div><!-- #primary -->
 
 <?php

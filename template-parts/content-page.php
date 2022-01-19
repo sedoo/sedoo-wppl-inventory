@@ -21,13 +21,14 @@ $app_ldap_connect = get_field('sedoo_inventory_ldap_connect');
 $app_date = get_field('sedoo_inventory_date_app');
 $app_password = get_field('sedoo_inventory_password_app');
 $app_image = get_field('sedoo_inventory_image_app');
+$app_structures = get_field('sedoo_inventory_structure_app');
 
 //Les fields ACF Sigle contact
 $contact_name = get_field('inventory_contact_name');
 $contact_first_name = get_field('inventory_contact_first_name');
 $contact_mail = get_field('inventory_contact_mail');
 $contact_phone = get_field('inventory_contact_phone');
-$contact_structure = get_field('inventory_contact_structure');
+$contact_structures = get_field('inventory_contact_structure');
 $contact_img = get_the_post_thumbnail_url();
 
 //Les taxonomy pour filtrer les applications
@@ -88,12 +89,12 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						<?php endif; ?>
 						</p>
 						
-						<?php if($structures) :?>
+						<?php if($app_structures) :?>
 						<p>
 						<strong>STRUCTURE :</strong>
-							<?php foreach( $structures as $structure ): ?>
-							<a href="<?php echo get_term_link($structure->term_id);?>">
-							<?php echo esc_html($structure->name); ?>
+							<?php foreach( $app_structures as $app_structure ): ?>
+							<a href="<?php echo get_permalink($app_structure->ID);?>">
+							<?php echo get_the_title($app_structure->ID); ?>
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
 						</p>
@@ -108,10 +109,9 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						<?php endif; ?>
 						</p>
 						
-						<?php if($app_taxo_server) { ?>
+						<?php if($app_taxo_server) : ?>
 						<p><b>SERVEUR : </b><span><?php  foreach ( $app_taxo_server as $term ) {echo $term->name;}?></span></p>
-						<?php } ?>
-
+						<?php endif ; ?>
 						<?php if($servers) :?>
 						<p>
 						<strong>SERVEUR :</strong>
@@ -124,20 +124,26 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 
 						<!-- contact -->
 						<?php if($contact_name) { ?>
-						<p><b>Nom: </b><span><?php echo $contact_name; ?>	</span></p>
+						<p><b>NOM : </b><span><?php echo $contact_name; ?>	</span></p>
 						<?php } ?>
 						<?php if($contact_first_name) { ?>
-						<p><b>Prénom: </b><span><?php echo $contact_first_name; ?>	</span></p>
+						<p><b>PRÉNOM : </b><span><?php echo $contact_first_name; ?>	</span></p>
 						<?php } ?>
 						<?php if($contact_mail) { ?>
-						<p><b>Mail: </b><span><?php echo $contact_mail; ?></span></p>
+						<p><b>MAIL : </b><span><?php echo $contact_mail; ?></span></p>
 						<?php } ?>
 						<?php if($contact_phone) { ?>
-						<p><b>Phone: </b><span><?php echo $contact_phone; ?></span></p>
+						<p><b>TÉLÉPHONE : </b><span><?php echo $contact_phone; ?></span></p>
 						<?php } ?>
-						<?php if($contact_structure) { ?>
-						<p><b>Structure: </b><span><?php echo $contact_structure; ?></span></p>
-						<?php } ?>
+						<?php if($contact_structures) :?>
+						<p>
+						<strong>STRUCTURE :</strong>
+							<?php foreach( $contact_structures as $contact_structure ): ?>
+							<a href="<?php echo get_permalink($contact_structure->ID);?>">
+							<?php echo get_the_title($contact_structure->ID); ?>
+							</a> &nbsp;<?php endforeach; ?>
+						<?php endif; ?>
+						</p>
 
 					</section>
                     <section>
