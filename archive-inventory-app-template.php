@@ -30,8 +30,8 @@ $applications = get_posts( $args );
 get_header();
 
 ?>
-
-	<div id="content-area" class="wrapper application-archive-template  archives">
+	 <div class="archive-template">
+	<div id="content-area" class="wrapper-layout application-archive-template  archives">
 		<main id="main" class="site-main">
 		<?php
 		if ( !empty($cover)) {
@@ -50,7 +50,7 @@ get_header();
 			</h1>
 			<section class="post-wrapper sedoo_blocks_listearticle">
 				<?php 
-					foreach($applications as $application) {
+					foreach($applications as $application) :
 						
 					?>
 					<article id="post-<?php echo $application->ID; ?>" <?php post_class('post'); ?>>
@@ -74,47 +74,46 @@ get_header();
 								<h3><?php echo get_the_title($application->ID); ?></h3>
 								<ul>
 								<!-- INSTANCES -->
-								<?php   // Get terms for post
+								<?php 
 								$instances = get_the_terms( $application->ID , $taxo_names_instance );
-								// Loop over each item since it's an array
-								if ( $instances != null ){?>
-							
-								<?php foreach( $instances as $instance ) {
-								// Print the name method from $term which is an OBJECT? ?>
-								<li><strong>Instances :</strong> <a href="<?php echo $instance->slug ?>"><?php echo $instance->name ;?></li>
-								<?php // Get rid of the other data stored in the object, since it's not needed
-								unset($instance);
-								} } ?>
+								if ( $instances) : ?>
+								<li><strong>Instances :</strong>
+								<?php foreach( $instances as $instance ) : ?> 
+									<a href="<?php echo $instance->slug ?>"><?php echo $instance->name ;?> </a>&nbsp;
+								<?php endforeach; ?></li>
+								<?php endif; ?>
 								
 								<!-- STRUCTURES -->
 								<?php
 								$structures = get_the_terms( $application->ID , $taxo_names_structure );
-								if ( $structures != null ){?>
-								<?php foreach( $structures as $structure ) {?>
-								<li><strong>Structures :</strong> <a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></li>
-								<?php 
-								unset($structure);
-								} } ?>
+								if ( $structures) :?>
+								<li><strong>Structures :</strong>
+								<?php foreach( $structures as $structure ) :?>
+									<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
+								<?php endforeach; ?></li>
+								<?php endif; ?>
 							
 								<!-- SERVER -->
 								<?php
 								$servers = get_the_terms( $application->ID , $taxo_names_server );
-								if ( $servers != null ){
-								foreach( $servers as $server ) { ?>
-								<li><strong>Server :</strong> <a href="<?php print $server->slug ?>"><?php echo $server->name ;?></li>
-								<?php
-								unset($server);
-								} } ?>
+								if ( $servers) : ?>
+								<li><strong>Server :</strong> 
+								<?php foreach( $servers as $server ) : ?>
+									<a href="<?php print $server->slug ?>"><?php echo $server->name ;?></a>&nbsp; 
+								<?php endforeach; ?></li>
+								<?php endif; ?>
 
 								<!-- TYPE DE SITE -->
 								<?php
 								$typedapps = get_the_terms( $application->ID , $taxo_names_type_de_site );
-								if ( $typedapps != null ){
-								foreach( $typedapps as $typedapp ) {?>
-								<li><strong>Type de site :</strong> <a href="<?php print $typedapp->slug ?>"><?php echo $typedapp->name ;?></li>
-								<?php 
-								unset($typedapp);
-								} } ?>
+								if ($typedapps) : ?>
+								<li><strong>Type de site :</strong> 
+								<?php foreach( $typedapps as $typedapp ) :?>
+									<a href="<?php print $typedapp->slug ?>"><?php echo $typedapp->name ;?></a>&nbsp;
+								<?php endforeach; ?>
+								</li>
+								<?php endif; ?>
+								
 								</ul>
 								<p><?php echo get_the_excerpt($application->ID); ?></p>
 							</div><!-- .entry-content -->
@@ -124,28 +123,30 @@ get_header();
 						</div>
 					</article><!-- #post-->
 					<?php 
-					}
+					endforeach;
 				?>
 			</section>
 		</main><!-- #main -->
-		<aside>
-		<h1 class="page-title">
-				Liste
-			</h1>
+		<aside class="contextual-sidebar"> 
+			<h2>ASIDE</h2>
 			<section>
-			
-			<?php 
-				while( $query2->have_posts() ) {
-					$query2->the_post();
-					echo '<li>' . get_the_title() . '</li>';
-				}
-				// Restore original Post Data
-				wp_reset_postdata();
-			?>
+            <?php
+		$queried_object = get_queried_object();
+		$taxonomy = $queried_object->taxonomy;
+		$term_id = $queried_object->term_id;
+		$taxonomy_name = 'sedoo_inventory_app';
+		$term_children = get_term_children($term_id, $taxonomy_name);
 
+		echo '<ul class="nav nav-pills">';
+			foreach ($term_children as $child) {
+				$term = get_term_by('id', $child, $taxonomy_name);
+				echo '<li><a class="btn btn-default" href="' . get_term_link($child, $taxonomy_name) . '">' . $term->name . '</a></li>';
+			}
+		echo '</ul>';
+	?>
 			</section>
 		</aside>
 	</div><!-- #primary -->
-
+	</div>
 <?php
 get_footer();

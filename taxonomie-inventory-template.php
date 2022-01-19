@@ -71,39 +71,52 @@ function sedoo_project_display_list_of_projects($applications, $term) { ?>
 <?php 
 }
 ?>
+    <div class="taxonomy-template">
 
-	<div id="content-area" class="wrapper project-taxonomie-template archives">
-		<main id="main" class="site-main">
-		<?php
-		if ( !empty($cover)) {
-				$coverStyle = "background-image:url(".$cover['url'].")";
-			?>
-			
-			<header id="cover" class="page-header" style="<?php echo $coverStyle;?>">
-				
-			</header><!-- .page-header -->
-			<?php
-			}
-			?>	
-			<h1 class="page-title">
-                <?php echo get_queried_object()->name; ?>
-			</h1>
-
-            <!-- DISPLAY THE TAXONOMY LISTE -->
+        <div id="content-area" class="wrapper-layout project-taxonomie-template archives">
+            <main id="main" class="site-main">
             <?php
-            $applicationFilter = get_posts( $args );
-            sedoo_project_display_list_of_projects($applicationFilter, get_queried_object());
-            ?>
+            if ( !empty($cover)) {
+                    $coverStyle = "background-image:url(".$cover['url'].")";
+                ?>
+                
+                <header id="cover" class="page-header" style="<?php echo $coverStyle;?>">
+                    
+                </header><!-- .page-header -->
+                <?php
+                }
+                ?>	
+                <h1 class="page-title">
+                    <?php echo get_queried_object()->name; ?>
+                </h1>
 
-		</main><!-- #main -->
-      
+                <!-- DISPLAY THE TAXONOMY LISTE -->
+                <?php
+                $applicationFilter = get_posts( $args );
+                sedoo_project_display_list_of_projects($applicationFilter, get_queried_object());
+                ?>
 
-        <?php ?>
+            </main><!-- #main -->
+            <aside class="contextual-sidebar project-sidebar contextual-inventory-sidebar">
+                <h2>ASIDE</h2>
+            <?php
+		$queried_object = get_queried_object();
+		$taxonomy = $queried_object->taxonomy;
+		$term_id = $queried_object->term_id;
+		$taxonomy_name = 'sedoo_inventory_app';
+		$term_children = get_term_children($term_id, $taxonomy_name);
 
-    
+		echo '<ul class="nav nav-pills">';
+			foreach ($term_children as $child) {
+				$term = get_term_by('id', $child, $taxonomy_name);
+				echo '<li><a class="btn btn-default" href="' . get_term_link($child, $taxonomy_name) . '">' . $term->name . '</a></li>';
+			}
+		echo '</ul>';
+	?>
+            </aside>
 
+        </div><!-- #primary -->
 
-	</div><!-- #primary -->
-
+    </div>
 <?php
 get_footer();

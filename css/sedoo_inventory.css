@@ -19,3 +19,17 @@
 .inventory-single-content-page .contextual-inventory-sidebar {         
     padding: 50px 0;
 }
+
+/* taxonomy template  */
+.taxonomy-template .wrapper-layout, .archive-template .wrapper-layout  {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+}
+.taxonomy-template aside, .archive-template aside  {
+    padding: 50px;
+}
