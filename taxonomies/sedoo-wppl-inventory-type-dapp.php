@@ -2,15 +2,15 @@
     
 //////////////////////
 // register type d'application tax
-function sedoo_inventory_register_type_site_tax() {
+function sedoo_inventory_register_type_dapp_tax() {
 
-	global $taxo_names_type_site;
+	global $taxo_names_type_dapp;
 	global $cpt_names_application;
 
 	$labels = array(
-		'name'                       => _x( 'Types de site', 'Taxonomy General Name', 'text_domain' ),
-		'singular_name'              => _x( 'Type de site', 'Taxonomy Singular Name', 'text_domain' ),
-		'menu_name'                  => __( 'Types de site', 'text_domain' ),
+		'name'                       => _x( 'Types d\'application', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Type d\'application', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Types d\'application', 'text_domain' ),
 		'all_items'                  => __( 'All Items', 'text_domain' ),
 		'parent_item'                => __( 'Parent Item', 'text_domain' ),
 		'parent_item_colon'          => __( 'Parent Item:', 'text_domain' ),
@@ -40,10 +40,10 @@ function sedoo_inventory_register_type_site_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( $taxo_names_type_site, array( $cpt_names_application ), $args );
+	register_taxonomy( $taxo_names_type_dapp, array( $cpt_names_application ), $args );
 
 }
-add_action( 'init', 'sedoo_inventory_register_type_site_tax', 0 );
+add_action( 'init', 'sedoo_inventory_register_type_dapp_tax', 0 );
 
 ?>
 

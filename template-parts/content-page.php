@@ -11,7 +11,7 @@ global $taxo_names_instance;
 global $taxo_names_server;
 global $taxo_names_structure;
 global $taxo_names_type_dapp;
-
+global $taxo_names_type_site;
 
 //Les fields ACF Sigle application
 $app_url = get_field('sedoo_inventory_url_app');
@@ -34,7 +34,7 @@ $instances = get_the_terms( get_the_ID(), $taxo_names_instance );
 $servers = get_the_terms( get_the_ID(), $taxo_names_server );
 $structures = get_the_terms( get_the_ID(), $taxo_names_structure );
 $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
-
+$typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
 ?>
 
 <div id="primary" class="content-area inventory-single-content-page">
@@ -44,6 +44,25 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
                     <header>
 					<!-- Application -->
 					<section class="inventoryInfoContener">
+						<!-- CONTACT -->
+						<?php if($contact_img) { ?>
+						<img src="<?php echo $contact_img; ?>"/>
+						<?php }?>
+						<?php if($contact_name) { ?>
+						<p><b>NOM : </b><span><?php echo $contact_name; ?>	</span></p>
+						<?php } ?>
+						<?php if($contact_first_name) { ?>
+						<p><b>PRÉNOM : </b><span><?php echo $contact_first_name; ?>	</span></p>
+						<?php } ?>
+						<?php if($contact_mail) { ?>
+						<p><b>MAIL : </b><span><?php echo $contact_mail; ?></span></p>
+						<?php } ?>
+						<?php if($contact_phone) { ?>
+						<p><b>TÉLÉPHONE : </b><span><?php echo $contact_phone; ?></span></p>
+						<?php } ?>
+
+						<!-- APPLICATION (structure pour contact aussi)-->
+						<!---->
 						<?php if($app_url) : ?>
 						<p><b>URL : </b><span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
 						<?php endif; ?>
@@ -100,7 +119,7 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						<!---->
 						<?php if($typedapps) :?>
 						<p>
-						<strong>TYPE DE SITE :</strong>
+						<strong>TYPE D'APPLICATION :</strong>
 							<?php foreach( $typedapps as $typedapp ): ?>
 							<a href="<?php echo get_term_link($typedapp->term_id);?>">
 							<?php echo esc_html($typedapp->name); ?>
@@ -108,9 +127,15 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						<?php endif; ?>
 						</p>
 						<!---->
-						<?php if($app_taxo_server) : ?>
-						<p><b>SERVEUR : </b><span><?php  foreach ( $app_taxo_server as $term ) {echo $term->name;}?></span></p>
-						<?php endif ; ?>
+						<?php if($typedesites) :?>
+						<p>
+						<strong>TYPE DE SITE :</strong>
+							<?php foreach( $typedesites as $typedesite ): ?>
+							<a href="<?php echo get_term_link($typedesite->term_id);?>">
+							<?php echo esc_html($typedesite->name); ?>
+							</a> &nbsp;<?php endforeach; ?>
+						<?php endif; ?>
+						</p>
 						<!---->
 						<?php if($servers) :?>
 						<p>
@@ -121,28 +146,7 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
 						</p>
-						<!-- contact -->
-						<?php if($contact_name) { ?>
-						<p><b>NOM : </b><span><?php echo $contact_name; ?>	</span></p>
-						<?php } ?>
-						<?php if($contact_first_name) { ?>
-						<p><b>PRÉNOM : </b><span><?php echo $contact_first_name; ?>	</span></p>
-						<?php } ?>
-						<?php if($contact_mail) { ?>
-						<p><b>MAIL : </b><span><?php echo $contact_mail; ?></span></p>
-						<?php } ?>
-						<?php if($contact_phone) { ?>
-						<p><b>TÉLÉPHONE : </b><span><?php echo $contact_phone; ?></span></p>
-						<?php } ?>
-						<?php if($contact_structures) :?>
-						<p>
-						<strong>STRUCTURE :</strong>
-							<?php foreach( $contact_structures as $contact_structure ): ?>
-							<a href="<?php echo get_permalink($contact_structure->ID);?>">
-							<?php echo get_the_title($contact_structure->ID); ?>
-							</a> &nbsp;<?php endforeach; ?>
-						<?php endif; ?>
-						</p>
+
 
 					</section>
                     <section>

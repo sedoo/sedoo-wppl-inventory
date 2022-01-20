@@ -16,7 +16,7 @@ global $taxo_names_type_de_site;
 
 $args = array(
     'numberposts' => -1,
-    'post_type'   => $cpt_names_application,
+    'post_type'   => 'sedoo_inventory_app',
     'tax_query' => array(
         array(
             'taxonomy' => get_queried_object()->taxonomy,
@@ -29,11 +29,12 @@ $args = array(
 		
 get_header();
 ?>
+                <!-- DISPLAY THE TAXONOMY LISTE -->
 
 <?php 
 
 // THIS FUNCTION IS USED TO DISPLAY PROJECTS IN TAXO PAGES
-function sedoo_project_display_list_of_projects($applications, $term) { ?>
+function sedoo_inventory_display_list_of_app($applications, $term) { ?>
 
     <!-- YOU ARE ON TAXONOMIE-INVENTORY-TEMPLATE.PHP -->
     <section class="post-wrapper sedoo_blocks_listearticle">
@@ -85,7 +86,8 @@ function sedoo_project_display_list_of_projects($applications, $term) { ?>
                 </header><!-- .page-header -->
                 <?php
                 }
-                ?>	
+                ?>	                <!-- DISPLAY THE TAXONOMY LISTE -->
+
                 <h1 class="page-title">
                     <?php echo get_queried_object()->name; ?>
                 </h1>
@@ -93,7 +95,7 @@ function sedoo_project_display_list_of_projects($applications, $term) { ?>
                 <!-- DISPLAY THE TAXONOMY LISTE -->
                 <?php
                 $applicationFilter = get_posts( $args );
-                sedoo_project_display_list_of_projects($applicationFilter, get_queried_object());
+                sedoo_inventory_display_list_of_app($applicationFilter, get_queried_object());
                 ?>
 
             </main><!-- #main -->

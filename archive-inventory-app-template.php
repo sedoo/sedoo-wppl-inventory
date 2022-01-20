@@ -13,6 +13,8 @@ global $taxo_names_instance;
 global $taxo_names_server;
 global $taxo_names_structure;
 global $taxo_names_type_de_site;
+global $taxo_names_type_dapp;
+
 
 $args = array(
 	'numberposts' => -1,
@@ -82,7 +84,6 @@ get_header();
 									<a href="<?php echo $instance->slug ?>"><?php echo $instance->name ;?> </a>&nbsp;
 								<?php endforeach; ?></li>
 								<?php endif; ?>
-								
 								<!-- STRUCTURES -->
 								<?php
 								$structures = get_the_terms( $application->ID , $taxo_names_structure );
@@ -92,7 +93,6 @@ get_header();
 									<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
 								<?php endforeach; ?></li>
 								<?php endif; ?>
-							
 								<!-- SERVER -->
 								<?php
 								$servers = get_the_terms( $application->ID , $taxo_names_server );
@@ -102,18 +102,26 @@ get_header();
 									<a href="<?php print $server->slug ?>"><?php echo $server->name ;?></a>&nbsp; 
 								<?php endforeach; ?></li>
 								<?php endif; ?>
-
-								<!-- TYPE DE SITE -->
+								<!-- TYPE D'APP -->
 								<?php
-								$typedapps = get_the_terms( $application->ID , $taxo_names_type_de_site );
+								$typedapps = get_the_terms( $application->ID , $taxo_names_type_dapp );
 								if ($typedapps) : ?>
-								<li><strong>Type de site :</strong> 
+								<li><strong>Type d'application :</strong> 
 								<?php foreach( $typedapps as $typedapp ) :?>
 									<a href="<?php print $typedapp->slug ?>"><?php echo $typedapp->name ;?></a>&nbsp;
 								<?php endforeach; ?>
 								</li>
 								<?php endif; ?>
-								
+								<!-- TYPE DE SITE -->
+								<?php
+								$typedesites = get_the_terms( $application->ID , $taxo_names_type_de_site );
+								if ($typedesites) : ?>
+								<li><strong>Type de site :</strong> 
+								<?php foreach( $typedesites as $typedesite ) :?>
+									<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
+								<?php endforeach; ?>
+								</li>
+								<?php endif; ?>
 								</ul>
 								<p><?php echo get_the_excerpt($application->ID); ?></p>
 							</div><!-- .entry-content -->

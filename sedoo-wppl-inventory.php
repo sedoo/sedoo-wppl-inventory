@@ -19,11 +19,13 @@
  global $taxo_names_structure;
  global $taxo_names_server;
  global $taxo_names_type_dapp;
+ global $taxo_names_type_site;
 // custom taxonomy varaibles
  $taxo_names_instance = 'sedoo_inventory_instance_app';
  $taxo_names_structure = 'sedoo_inventory_structure_app';
  $taxo_names_server = 'sedoo_inventory_server_app';
  $taxo_names_type_dapp = 'sedoo_inventory_type_app';
+ $taxo_names_type_site = 'sedoo_inventory_type_site';
 //  custom post typ variables
  $cpt_names_application = 'sedoo_inventory_app';
  $cpt_names_contact = 'sedoo_invent_contact';
@@ -44,6 +46,7 @@ include 'taxonomies/sedoo-wppl-inventory-structure.php';
 include 'taxonomies/sedoo-wppl-inventory-server.php';
 include 'taxonomies/sedoo-wppl-inventory-instance-wp.php';
 include 'taxonomies/sedoo-wppl-inventory-type-de-site.php';
+include 'taxonomies/sedoo-wppl-inventory-type-dapp.php';
 
 // AUTRE
 include 'sedoo-wppl-inventory-display.php';
