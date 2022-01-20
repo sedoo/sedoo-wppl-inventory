@@ -21,14 +21,12 @@ $app_ldap_connect = get_field('sedoo_inventory_ldap_connect');
 $app_date = get_field('sedoo_inventory_date_app');
 $app_password = get_field('sedoo_inventory_password_app');
 $app_image = get_field('sedoo_inventory_image_app');
-$app_structures = get_field('sedoo_inventory_structure_app');
 
 //Les fields ACF Sigle contact
 $contact_name = get_field('inventory_contact_name');
 $contact_first_name = get_field('inventory_contact_first_name');
 $contact_mail = get_field('inventory_contact_mail');
 $contact_phone = get_field('inventory_contact_phone');
-$contact_structures = get_field('inventory_contact_structure');
 $contact_img = get_the_post_thumbnail_url();
 
 //Les taxonomy pour filtrer les applications
@@ -49,11 +47,11 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 						<?php if($app_url) : ?>
 						<p><b>URL : </b><span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
 						<?php endif; ?>
-						
+						<!---->
 						<?php if($app_url_backoff) : ?>
 						<p><b>BACKOFFICE : </b><span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
 						<?php endif; ?>
-						
+						<!---->
 						<?php if($app_contacts) :?>
 						<p>
 						<strong>CONTACT :</strong>
@@ -62,23 +60,23 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 							<?php echo get_the_title($app_contact->ID); ?>
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
-						
 						</p>
+						<!---->
 						<?php if($app_date) : ?>
 						<p><b>DATE DE PREMIERE MISE EN LIGNE : </b><span><?php echo $app_date; ?></span></p>
 						<?php endif; ?>
-						
+						<!---->
 						<?php if($app_password) : ?>
 						<p><b>MOT DE PASSE : </b><span><?php echo $app_password; ?></span></p>
 						<?php endif; ?>
-						
+						<!---->
 						<?php if($app_ldap_connect) : ?>
            				 <p><b>LDAP :</b>
 						<?php if ($app_ldap_connect == 1) : ?> 
 						Connecté au LDAP <?php else : ?> Non Connecté au LDAP <?php endif; ?>
 						<?php endif; ?>
 						</p>
-
+						<!---->
 						<?php if($instances) :?>
 						<p>
 						<strong>INSTANCE :</strong>
@@ -88,17 +86,18 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
 						</p>
-						
-						<?php if($app_structures) :?>
+						<!---->
+						<?php if($structures) :?>
 						<p>
 						<strong>STRUCTURE :</strong>
-							<?php foreach( $app_structures as $app_structure ): ?>
-							<a href="<?php echo get_permalink($app_structure->ID);?>">
-							<?php echo get_the_title($app_structure->ID); ?>
+							<?php foreach( $structures as $structure ): ?>
+							<a href="<?php echo get_term_link($structure->term_id);?>">
+							<?php echo esc_html($structure->name); ?>
 							</a> &nbsp;<?php endforeach; ?>
+							</p>
 						<?php endif; ?>
-						</p>
 						
+						<!---->
 						<?php if($typedapps) :?>
 						<p>
 						<strong>TYPE DE SITE :</strong>
@@ -108,10 +107,11 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
 						</p>
-						
+						<!---->
 						<?php if($app_taxo_server) : ?>
 						<p><b>SERVEUR : </b><span><?php  foreach ( $app_taxo_server as $term ) {echo $term->name;}?></span></p>
 						<?php endif ; ?>
+						<!---->
 						<?php if($servers) :?>
 						<p>
 						<strong>SERVEUR :</strong>
@@ -121,7 +121,6 @@ $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 							</a> &nbsp;<?php endforeach; ?>
 						<?php endif; ?>
 						</p>
-
 						<!-- contact -->
 						<?php if($contact_name) { ?>
 						<p><b>NOM : </b><span><?php echo $contact_name; ?>	</span></p>
