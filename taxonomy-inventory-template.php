@@ -29,7 +29,6 @@ $args = array(
 		
 get_header();
 ?>
-                <!-- DISPLAY THE TAXONOMY LISTE -->
 
 <?php 
 
@@ -100,21 +99,109 @@ function sedoo_inventory_display_list_of_app($applications, $term) { ?>
 
             </main><!-- #main -->
             <aside class="contextual-sidebar project-sidebar contextual-inventory-sidebar">
-                <h2>ASIDE</h2>
-            <?php
-		$queried_object = get_queried_object();
-		$taxonomy = $queried_object->taxonomy;
-		$term_id = $queried_object->term_id;
-		$taxonomy_name = 'sedoo_inventory_app';
-		$term_children = get_term_children($term_id, $taxonomy_name);
+                <?php
+			// Get the taxonomy's terms
+			$terms_Typedapp = get_terms(
+				array(
+					'taxonomy'   => 'sedoo_inventory_type_app',
+					'hide_empty' => false,
+				)
+			);
+			$terms_structures = get_terms(
+				array(
+					'taxonomy'   => 'sedoo_inventory_structure_app',
+					'hide_empty' => false,
+				)
+			);
+			$terms_instances = get_terms(
+				array(
+					'taxonomy'   => 'sedoo_inventory_instance_app',
+					'hide_empty' => false,
+				)
+			);
+			$terms_servers = get_terms(
+				array(
+					'taxonomy'   => 'sedoo_inventory_server_app',
+					'hide_empty' => false,
+				)
+			);
+			$terms_type_de_sites = get_terms(
+				array(
+					'taxonomy'   => 'sedoo_inventory_type_site',
+					'hide_empty' => false,
+				)
+			);?>
 
-		echo '<ul class="nav nav-pills">';
-			foreach ($term_children as $child) {
-				$term = get_term_by('id', $child, $taxonomy_name);
-				echo '<li><a class="btn btn-default" href="' . get_term_link($child, $taxonomy_name) . '">' . $term->name . '</a></li>';
-			}
-		echo '</ul>';
-	?>
+			<section>
+			<h2>Tous les types d'application</h2>
+			<?php // Check if any term exists
+			if ( ! empty( $terms_Typedapp ) && is_array( $terms_Typedapp ) ) {
+				// Run a loop and print them all ?>
+				<ul>
+				<?php foreach ( $terms_Typedapp as $term_Typedapp ) { ?>
+				<li> <a href="<?php echo esc_url( get_term_link( $term_Typedapp ) ) ?>">
+						<?php echo $term_Typedapp->name; ?>
+					</a></li><?php
+				}?>
+				</ul>
+			<?php } ?>
+			</section>
+			<section>
+				<h2>Toutes les structures</h2>
+				<?php // Check if any term exists
+				if ( ! empty( $terms_structures ) && is_array( $terms_structures ) ) {
+					// Run a loop and print them all ?>
+					<ul>
+					<?php foreach ( $terms_structures as $term_structure ) { ?>
+					<li> <a href="<?php echo esc_url( get_term_link( $term_structure ) ) ?>">
+							<?php echo $term_structure->name; ?>
+						</a></li><?php
+					}?>
+					</ul>
+				<?php } ?>
+			</section>
+			<section>
+				<h2>Toutes les instances</h2>
+				<?php // Check if any term exists
+				if ( ! empty( $terms_instances ) && is_array( $terms_instances ) ) {
+					// Run a loop and print them all ?>
+					<ul>
+					<?php foreach ( $terms_instances as $terms_instance ) { ?>
+					<li> <a href="<?php echo esc_url( get_term_link( $terms_instance ) ) ?>">
+							<?php echo $terms_instance->name; ?>
+						</a></li><?php
+					}?>
+					</ul>
+				<?php } ?>
+			</section>
+			<section>
+				<h2>Tous les servers</h2>
+				<?php // Check if any term exists
+				if ( ! empty( $terms_servers ) && is_array( $terms_servers ) ) {
+					// Run a loop and print them all ?>
+					<ul>
+					<?php foreach ( $terms_servers as $terms_server ) { ?>
+					<li> <a href="<?php echo esc_url( get_term_link( $terms_server ) ) ?>">
+							<?php echo $terms_server->name; ?>
+						</a></li><?php
+					}?>
+					</ul>
+				<?php } ?>
+			</section>
+			<section>
+				<h2>Tous les types de sites</h2>
+				<?php // Check if any term exists
+				if ( ! empty( $terms_type_de_sites ) && is_array( $terms_type_de_sites ) ) {
+					// Run a loop and print them all ?>
+					<ul>
+					<?php foreach ( $terms_type_de_sites as $terms_type_de_site ) { ?>
+					<li> <a href="<?php echo esc_url( get_term_link( $terms_type_de_site ) ) ?>">
+							<?php echo $terms_type_de_site->name; ?>
+						</a></li><?php
+					}?>
+					</ul>
+				<?php } ?>
+			</section>
             </aside>
 
         </div><!-- #primary -->

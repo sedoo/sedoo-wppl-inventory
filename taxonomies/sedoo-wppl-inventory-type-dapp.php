@@ -35,7 +35,7 @@ function sedoo_inventory_register_type_dapp_tax() {
 		'public'                     => true,
 		'show_in_rest'				 => true,
 		'show_ui'                    => true,        
-		'rewrite'           => array( 'slug' => 'type-de-sites' ),
+		'rewrite'           => array( 'slug' => 'type-d-application' ),
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
