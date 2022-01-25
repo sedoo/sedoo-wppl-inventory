@@ -46,7 +46,7 @@ $typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
 					<section class="inventoryInfoContener">
 						<!-- CONTACT -->
 						<?php if($contact_img) { ?>
-						<img src="<?php echo $contact_img; ?>"/>
+						<img class="contactImg" src="<?php echo $contact_img; ?>"/>
 						<?php }?>
 						<?php if($contact_name) { ?>
 						<p><b>NOM : </b><span><?php echo $contact_name; ?>	</span></p>

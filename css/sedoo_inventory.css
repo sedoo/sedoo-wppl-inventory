@@ -33,3 +33,6 @@
 .taxonomy-template aside, .archive-template aside  {
     padding: 50px;
 }
+.inventory-single-content-page article .contactImg{
+width:100px;
+}
