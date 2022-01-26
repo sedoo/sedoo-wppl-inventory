@@ -16,7 +16,7 @@ global $taxo_names_type_site;
 //Les fields ACF Sigle application
 $app_url = get_field('sedoo_inventory_url_app');
 $app_url_backoff = get_field('sedoo_inventory_url_backoff');
-$app_contacts = get_field('sedoo_inventory_contact_app');
+$app_contacts = get_field('sedoo_inventory_bidirectionnal_relation');
 $app_ldap_connect = get_field('sedoo_inventory_ldap_connect');
 $app_date = get_field('sedoo_inventory_date_app');
 $app_password = get_field('sedoo_inventory_password_app');
