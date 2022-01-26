@@ -16,7 +16,7 @@ global $taxo_names_type_site;
 //Les fields ACF Sigle application
 $app_url = get_field('sedoo_inventory_url_app');
 $app_url_backoff = get_field('sedoo_inventory_url_backoff');
-$app_contacts = get_field('inventory_contact_bidirectional_acf_update_value');
+$app_contacts = get_field('sedoo_inventory_contact_app');
 $app_ldap_connect = get_field('sedoo_inventory_ldap_connect');
 $app_date = get_field('sedoo_inventory_date_app');
 $app_password = get_field('sedoo_inventory_password_app');
@@ -42,18 +42,7 @@ $typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
             <main id="main" class="site-main">
                 <article id="post-<?php the_ID();?>">	
                     <header>
-
-					<!-- Display title for Application only -->
-					
-					<h1>
-						<?php 
-						$title = get_the_title();
-						$title = mb_strimwidth($title, 0, 60, '...');
-						echo $title;
-						?>
-					</h1> 
-					<!-- Display title for contact only -->
-
+					<!-- Application -->
 					<section class="inventoryInfoContener">
 						<!-- CONTACT -->
 						<?php if($contact_img) { ?>
@@ -173,8 +162,7 @@ $typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
 			</main><!-- #main -->
 
 				<aside class="contextual-sidebar project-sidebar contextual-inventory-sidebar">
-				
-							
+
 					<section class="sedoo-project-section-date">
 					
 					</section>
