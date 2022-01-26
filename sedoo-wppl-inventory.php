@@ -29,7 +29,7 @@
 //  custom post typ variables
  $cpt_names_application = 'sedoo_inventory_app';
  $cpt_names_contact = 'sedoo_invent_contact';
-
+ $cpt_names_structure = 'sedoo_invent_struct';
 // LOAD CSS & SCRIPTS 
 function sedoo_wppl_inventory_scripts() {
     wp_register_style( 'prefix-style', plugins_url('css/sedoo_inventory.css', __FILE__) );
@@ -41,6 +41,7 @@ function sedoo_wppl_inventory_scripts() {
 // CPT - POST TYPES
 include 'post-types/sedoo-wppl-inventory-application.php';
 include 'post-types/sedoo-wppl-inventory-contact.php';
+include 'post-types/sedoo-wppl-inventory-structure.php';
 // TAXONOMIES
 include 'taxonomies/sedoo-wppl-inventory-structure.php';
 include 'taxonomies/sedoo-wppl-inventory-server.php';
