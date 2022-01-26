@@ -35,13 +35,24 @@ $servers = get_the_terms( get_the_ID(), $taxo_names_server );
 $structures = get_the_terms( get_the_ID(), $taxo_names_structure );
 $typedapps = get_the_terms( get_the_ID(), $taxo_names_type_dapp );
 $typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
-?>
 
+// Bidirectionnel field
+$teams = get_field( 'field_61d72296b3bea' );
+?>
+ 
 <div id="primary" class="content-area inventory-single-content-page">
         <div class="wrapper-layout">    
             <main id="main" class="site-main">
                 <article id="post-<?php the_ID();?>">	
                     <header>
+					<!-- Display title  -->
+   					<h1>
+						<?php 
+						$title = get_the_title();
+						$title = mb_strimwidth($title, 0, 60, '...');
+						echo $title;
+						?>
+					</h1> 
 					<!-- Application -->
 					<section class="inventoryInfoContener">
 						<!-- CONTACT -->
@@ -71,7 +82,7 @@ $typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
 						<p><b>BACKOFFICE : </b><span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
 						<?php endif; ?>
 						<!---->
-						<?php if($app_contacts) :?>
+						<?php if($app_contacts || $app_url_backoff ) :?>
 						<p>
 						<strong>CONTACT :</strong>
 							<?php foreach( $app_contacts as $app_contact ): ?>
@@ -219,7 +230,21 @@ $typedesites = get_the_terms( get_the_ID(), $taxo_names_type_site );
 							</p>
 						</section>
 						<?php endif; ?>
-				
+						<!---->
+						<h2>LES APPLICATIONS</h2>
+						<ul>
+						<?php 
+						foreach ( $teams as $team) {
+						?>
+							<li>
+								<a href="<?php echo esc_url( get_permalink($team -> ID) );?>" title="<?php echo $team -> post_title;?>">
+								<?php echo $team -> post_title;?></a>
+							</li>
+						<?php
+						}
+						?>	
+						</ul>
+						
 				</aside>
 			<?php
 		?>
