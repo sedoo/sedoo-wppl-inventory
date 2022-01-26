@@ -31,7 +31,9 @@
 
 }
 .taxonomy-template aside, .archive-template aside  {
-    padding: 50px;
+    padding: 10px 15px;
+margin-top: 85px;
+background: #f0f0f0;
 }
 .inventory-single-content-page article .contactImg{
 width:100px;
