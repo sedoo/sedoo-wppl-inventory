@@ -13,7 +13,7 @@ global $taxo_names_structure;
 global $taxo_names_type_dapp;
 global $taxo_names_type_site;
 global $cpt_names_application;
-global $cpt_names_contact;
+
 //Les fields ACF Sigle application
 $app_url = get_field('sedoo_inventory_url_app');
 $app_url_backoff = get_field('sedoo_inventory_url_backoff');
@@ -22,6 +22,15 @@ $app_ldap_connect = get_field('sedoo_inventory_ldap_connect');
 $app_date = get_field('sedoo_inventory_date_app');
 $app_password = get_field('sedoo_inventory_password_app');
 $app_image = get_field('sedoo_inventory_image_app');
+$app_backup_src = get_field('app_backup_sources_path');
+$app_backup_data = get_field('app_backup_data_path');
+$app_backup_local = get_field('app_backup_repertoire_local');
+$app_backup_script = get_field('app_backup_script');
+$app_backup_destination = get_field('app_backup_destination');
+$app_backup_frequence = get_field('app_backup_frequence');
+$app_backup_volume = get_field('app_backup_volume');
+$app_documentation_url = get_field('app_doc_url');
+$app_documentation_fichier = get_field('app_doc_fichier');
 
 //Les fields ACF Sigle contact
 $contact_name = get_field('inventory_contact_name');
@@ -166,6 +175,42 @@ $teams = get_field( 'field_61d72296b3bea' );
 								</a> &nbsp;<?php endforeach; ?>
 							<?php endif; ?>
 							</p>
+							<!-- BACKUP -->
+							<?php if($app_backup_src) : ?>
+							<p><b>BACKUP SOURCE : </b><span><a href="<?php echo $app_backup_src; ?>" title="lien vers <?php echo $app_backup_src; ?>" ><?php echo $app_backup_src; ?></a></span></p>
+							<?php endif; ?>
+
+							<?php if($app_backup_data) : ?>
+							<p><b>BACKUP DATA : </b><span><a href="<?php echo $app_backup_data; ?>" title="lien vers <?php echo $app_backup_data; ?>" ><?php echo $app_backup_data; ?></a></span></p>
+							<?php endif; ?>
+
+							<?php if($app_backup_local) : ?>
+							<p><b>BACKUP LOCAL : </b><span><a href="<?php echo $app_backup_local; ?>" title="lien vers <?php echo $app_backup_local; ?>" ><?php echo $app_backup_local; ?></a></span></p>
+							<?php endif; ?>
+
+							<?php if($app_backup_script) : ?>
+							<p><b>BACKUP SCRIPT : </b><span><?php echo $app_backup_script; ?></span></p>
+							<?php endif; ?>
+
+							<?php if($app_backup_destination) : ?>
+							<p><b>BACKUP DESTINATION : </b><span><a href="<?php echo $app_backup_destination; ?>" title="lien vers <?php echo $app_backup_destination; ?>" ><?php echo $app_backup_destination; ?></a></span></p>
+							<?php endif; ?>
+
+							<?php if($app_backup_frequence) : ?>
+							<p><b>BACKUP FRÉQUENCE : </b><span><?php echo $app_backup_frequence; ?></span></p>
+							<?php endif; ?>
+
+							<?php if($app_backup_volume) : ?>
+							<p><b>BACKUP VOLUME : </b><span><?php echo $app_backup_volume; ?></span></p>
+							<?php endif; ?>
+
+							<?php if($app_documentation_url) : ?>
+							<p><b>DOCUMENTATION URL : </b><span><a href="<?php echo $app_documentation_url; ?>" title="lien vers <?php echo $app_documentation_url; ?>" ><?php echo $app_documentation_url; ?></a></span></p>
+							<?php endif; ?>
+
+							<?php if($app_documentation_fichier) : ?>
+							<p><b>DOCUMENTATION FICHIER : </b><span><a href="<?php echo $app_documentation_fichier; ?>" title="lien vers <?php echo $app_documentation_fichier; ?>" ><?php echo $app_documentation_fichier; ?></a></span></p>
+							<?php endif; ?>
 
 						<?php endif; ?>
 					</section>
