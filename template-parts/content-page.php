@@ -176,43 +176,55 @@ $teams = get_field( 'field_61d72296b3bea' );
 							<?php endif; ?>
 							</p>
 							<!-- BACKUP -->
-							<?php if($app_backup_src) : ?>
-							<p><b>BACKUP SOURCE : </b><span><a href="<?php echo $app_backup_src; ?>" title="lien vers <?php echo $app_backup_src; ?>" ><?php echo $app_backup_src; ?></a></span></p>
-							<?php endif; ?>
+							<?php if($app_backup_src || $app_backup_src || $app_backup_data || $app_backup_local || $app_backup_script || $app_backup_destination || $app_backup_frequence || $app_backup_volume ) : ?>
+								
+								<h3>BACKUP</h3>
 
-							<?php if($app_backup_data) : ?>
-							<p><b>BACKUP DATA : </b><span><a href="<?php echo $app_backup_data; ?>" title="lien vers <?php echo $app_backup_data; ?>" ><?php echo $app_backup_data; ?></a></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_src) : ?>
+								<p><b>BACKUP SOURCE : </b><span><a href="<?php echo $app_backup_src; ?>" title="lien vers <?php echo $app_backup_src; ?>" ><?php echo $app_backup_src; ?></a></span></p>
+								<?php endif; ?>
 
-							<?php if($app_backup_local) : ?>
-							<p><b>BACKUP LOCAL : </b><span><a href="<?php echo $app_backup_local; ?>" title="lien vers <?php echo $app_backup_local; ?>" ><?php echo $app_backup_local; ?></a></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_data) : ?>
+								<p><b>BACKUP DATA : </b><span><a href="<?php echo $app_backup_data; ?>" title="lien vers <?php echo $app_backup_data; ?>" ><?php echo $app_backup_data; ?></a></span></p>
+								<?php endif; ?>
 
-							<?php if($app_backup_script) : ?>
-							<p><b>BACKUP SCRIPT : </b><span><?php echo $app_backup_script; ?></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_local) : ?>
+								<p><b>BACKUP LOCAL : </b><span><a href="<?php echo $app_backup_local; ?>" title="lien vers <?php echo $app_backup_local; ?>" ><?php echo $app_backup_local; ?></a></span></p>
+								<?php endif; ?>
 
-							<?php if($app_backup_destination) : ?>
-							<p><b>BACKUP DESTINATION : </b><span><a href="<?php echo $app_backup_destination; ?>" title="lien vers <?php echo $app_backup_destination; ?>" ><?php echo $app_backup_destination; ?></a></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_script) : ?>
+								<p><b>BACKUP SCRIPT : </b><span><?php echo $app_backup_script; ?></span></p>
+								<?php endif; ?>
 
-							<?php if($app_backup_frequence) : ?>
-							<p><b>BACKUP FRÉQUENCE : </b><span><?php echo $app_backup_frequence; ?></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_destination) : ?>
+								<p><b>BACKUP DESTINATION : </b><span><a href="<?php echo $app_backup_destination; ?>" title="lien vers <?php echo $app_backup_destination; ?>" ><?php echo $app_backup_destination; ?></a></span></p>
+								<?php endif; ?>
 
-							<?php if($app_backup_volume) : ?>
-							<p><b>BACKUP VOLUME : </b><span><?php echo $app_backup_volume; ?></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_frequence) : ?>
+								<p><b>BACKUP FRÉQUENCE : </b><span><?php echo $app_backup_frequence; ?></span></p>
+								<?php endif; ?>
 
-							<?php if($app_documentation_url) : ?>
-							<p><b>DOCUMENTATION URL : </b><span><a href="<?php echo $app_documentation_url; ?>" title="lien vers <?php echo $app_documentation_url; ?>" ><?php echo $app_documentation_url; ?></a></span></p>
-							<?php endif; ?>
+								<?php if($app_backup_volume) : ?>
+								<p><b>BACKUP VOLUME : </b><span><?php echo $app_backup_volume; ?></span></p>
+								<?php endif; ?>
 
-							<?php if($app_documentation_fichier) : ?>
-							<p><b>DOCUMENTATION FICHIER : </b><span><a href="<?php echo $app_documentation_fichier; ?>" title="lien vers <?php echo $app_documentation_fichier; ?>" ><?php echo $app_documentation_fichier; ?></a></span></p>
+							<?php endif; ?>
+							<?php if($app_documentation_url || $app_documentation_fichier) : ?>
+
+								<h3>DOCUMENTATION</h3>
+
+								<?php if($app_documentation_url) : ?>
+								<p><b>DOCUMENTATION URL : </b><span><a href="<?php echo $app_documentation_url; ?>" title="lien vers <?php echo $app_documentation_url; ?>" ><?php echo $app_documentation_url; ?></a></span></p>
+								<?php endif; ?>
+
+								<?php if($app_documentation_fichier) : ?>
+								<p><b>DOCUMENTATION FICHIER : </b><span><a href="<?php echo $app_documentation_fichier; ?>" title="lien vers <?php echo $app_documentation_fichier; ?>" ><?php echo $app_documentation_fichier; ?></a></span></p>
+								<?php endif; ?>
+
 							<?php endif; ?>
 
 						<?php endif; ?>
+						
 					</section>
                     <section>
                         <?php the_content(); ?>
