@@ -67,14 +67,7 @@ get_header();
 						<div class="group-content">
 							<div class="entry-content">
 								<h3><?php echo get_the_title($contact->ID); ?></h3>
-								<div class="tag <?php echo $taxo_names_thematiques; ?>">
-									<?php 
-										$thematiques = get_the_terms( $contact->ID, $taxo_names_thematiques );
-										foreach($thematiques as $thematique) {
-											echo '<a class="them_link" href="'.get_term_link($thematique->term_id).'">'.esc_html($thematique->name).'</a>';   
-										}
-									?>
-								</div>
+					
 								<?php 
 									echo get_the_excerpt($contact->ID); 								
 								?>

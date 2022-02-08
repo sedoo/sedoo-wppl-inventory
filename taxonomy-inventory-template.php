@@ -25,7 +25,6 @@ $args = array(
         )
         )
 );
-
 		
 get_header();
 ?>

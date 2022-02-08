@@ -1,8 +1,5 @@
 <?php 
 
-// **********************
-// Applications acf-field 
-// **********************
 if( function_exists('acf_add_local_field_group') ):
 
     acf_add_local_field_group(array(
@@ -56,6 +53,33 @@ if( function_exists('acf_add_local_field_group') ):
                 ),
                 'default_value' => 'https://',
                 'placeholder' => 'www.google.fr/backoffice',
+            ),
+            array(
+                'key' => 'field_620265ab9a2d4',
+                'label' => 'Proxy',
+                'name' => 'app_proxy',
+                'type' => 'select',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'choices' => array(
+                    'www4' => 'www4',
+                    'www5' => 'www5',
+                    'www6' => 'www6',
+                    'www7' => 'www7',
+                ),
+                'default_value' => false,
+                'allow_null' => 0,
+                'multiple' => 0,
+                'ui' => 0,
+                'return_format' => 'value',
+                'ajax' => 0,
+                'placeholder' => '',
             ),
             array(
                 'key' => 'field_61d5a15a66b15',

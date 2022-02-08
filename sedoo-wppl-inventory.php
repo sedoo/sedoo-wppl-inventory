@@ -31,12 +31,22 @@
  $cpt_names_contact = 'sedoo_invent_contact';
 
 // LOAD CSS & SCRIPTS 
-function sedoo_wppl_inventory_scripts() {
+function sedoo_wppl_inventory_styles() {
     wp_register_style( 'prefix-style', plugins_url('css/sedoo_inventory.css', __FILE__) );
     wp_enqueue_style( 'prefix-style' );
 }
- add_action('wp_enqueue_scripts','sedoo_wppl_inventory_scripts');
-
+ add_action('wp_enqueue_scripts','sedoo_wppl_inventory_styles');
+ function sedoo_wppl_inventory_scripts() {
+ // le fichier js qui contient les fonctions accordeons
+ $script_accordeons = plugins_url().'/sedoo-wppl-inventory/js/accordeon.js';
+ wp_enqueue_script(
+     'script_inventory',
+     $script_accordeons, 
+     array('jquery'),
+    '1.0.0',
+    true);
+ }
+ add_action('wp_enqueue_scripts', 'sedoo_wppl_inventory_scripts');
 //  INCLUDE REGISTER POST TYPE AND TAXONOMIES FUNCTIONS
 // CPT - POST TYPES
 include 'post-types/sedoo-wppl-inventory-application.php';
