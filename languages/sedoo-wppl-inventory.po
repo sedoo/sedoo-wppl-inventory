@@ -15,15 +15,15 @@ msgstr ""
 "X-Loco-Version: 2.5.2; wp-5.7.2\n"
 "X-Domain: sedoo-wppl-inventory"
 
-#: taxonomie-inventory-template.php:130 template-parts/content-page.php:99
+#: taxonomy-inventory-template.php:130 template-parts/content-page.php:99
 msgid "Data access"
 msgstr "Accès aux données"
 
-#: taxonomie-inventory-template.php:127
+#: taxonomy-inventory-template.php:127
 msgid "Description"
 msgstr ""
 
-#: taxonomie-inventory-template.php:129
+#: taxonomy-inventory-template.php:129
 msgid "End date"
 msgstr "Date de fin"
 
@@ -39,7 +39,7 @@ msgstr "Du"
 msgid "Gestion des inventory"
 msgstr ""
 
-#: taxonomie-inventory-template.php:126
+#: taxonomy-inventory-template.php:126
 msgid "Name"
 msgstr "Nom"
 
@@ -87,7 +87,7 @@ msgstr "Sedoo - inventory"
 msgid "Since"
 msgstr "Depuis"
 
-#: taxonomie-inventory-template.php:128
+#: taxonomy-inventory-template.php:128
 msgid "Start date"
 msgstr "Date de début"
 

@@ -6,13 +6,6 @@
  *
  * @package labs_by_Sedoo
  */
-global $cpt_names_application;
-global $cpt_names_contact;
-global $taxo_names_instance;
-global $taxo_names_server;
-global $taxo_names_structure;
-global $taxo_names_type_de_site;
-
 
 $args = array(
     'numberposts' => -1,
@@ -25,7 +18,15 @@ $args = array(
         )
         )
 );
-		
+// ACF fields backup
+$app_backup_src = get_field('app_backup_sources_path');
+$app_backup_data = get_field('app_backup_data_path');
+$app_backup_local = get_field('app_backup_repertoire_local');
+$app_backup_script = get_field('app_backup_script');
+$app_backup_destination = get_field('app_backup_destination');
+$app_backup_frequence = get_field('app_backup_frequence');
+$app_backup_volume = get_field('app_backup_volume');
+
 get_header();
 ?>
 
@@ -34,7 +35,7 @@ get_header();
 // THIS FUNCTION IS USED TO DISPLAY PROJECTS IN TAXO PAGES
 function sedoo_inventory_display_list_of_app($applications, $term) { ?>
 
-    <!-- YOU ARE ON TAXONOMIE-INVENTORY-TEMPLATE.PHP -->
+    <!-- YOU ARE ON taxonomy-inventory-template.php -->
     <section class="post-wrapper sedoo_blocks_listearticle">
 
     <?php 
@@ -84,7 +85,8 @@ function sedoo_inventory_display_list_of_app($applications, $term) { ?>
                 </header><!-- .page-header -->
                 <?php
                 }
-                ?>	                <!-- DISPLAY THE TAXONOMY LISTE -->
+                ?>
+				<!-- DISPLAY THE TAXONOMY LISTE -->
 
                 <h1 class="page-title">
                     <?php echo get_queried_object()->name; ?>

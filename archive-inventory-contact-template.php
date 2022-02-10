@@ -6,12 +6,6 @@
  *
  * @package labs_by_Sedoo
  */
-global $cpt_names_application;
-global $cpt_names_contact;
-global $taxo_names_instance;
-global $taxo_names_server;
-global $taxo_names_structure;
-global $taxo_names_type_de_site;
 
 $currentTaxo = 	get_queried_object()->name;
 

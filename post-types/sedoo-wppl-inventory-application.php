@@ -3,8 +3,6 @@
 // Register contact post type
 function sedoo_inventory_register_application_cpt() {
 
-	global $cpt_names_application;
-
 	$labels = array(
 		'name'                  => _x( 'Applications', 'Post Type General Name', 'text_domain' ),
 		'singular_name'         => _x( 'Application', 'Post Type Singular Name', 'text_domain' ),
@@ -56,7 +54,7 @@ function sedoo_inventory_register_application_cpt() {
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true
 	);
-	register_post_type( $cpt_names_application, $args );
+	register_post_type( 'sedoo_inventory_app', $args );
 
 }
 add_action( 'init', 'sedoo_inventory_register_application_cpt', 0 );

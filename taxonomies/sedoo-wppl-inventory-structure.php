@@ -4,10 +4,6 @@
 // register structure tax
 function sedoo_inventory_register_structure_tax() {
 
-	global $taxo_names_structure; 
-	global $cpt_names_application;
-	global $cpt_names_contact;
-
 	$labels = array(
 		'name'                       => _x( 'Structures', 'Taxonomy General Name', 'text_domain' ),
 		'singular_name'              => _x( 'Structure', 'Taxonomy Singular Name', 'text_domain' ),
@@ -41,7 +37,7 @@ function sedoo_inventory_register_structure_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( $taxo_names_structure, array( $cpt_names_application, $cpt_names_contact ), $args );
+	register_taxonomy( 'sedoo_inventory_structure_app', array( 'sedoo_inventory_app', 'sedoo_invent_contact'), $args );
 
 }
 add_action( 'init', 'sedoo_inventory_register_structure_tax', 0 );

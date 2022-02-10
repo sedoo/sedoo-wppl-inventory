@@ -4,9 +4,6 @@
 // register thematique tax
 function sedoo_inventory_register_instance_tax() {
 
-	global $taxo_names_instance;
-	global $cpt_names_application;
-
 	$labels = array(
 		'name'                       => _x( 'Instances', 'Taxonomy General Name', 'text_domain' ),
 		'singular_name'              => _x( 'Instance', 'Taxonomy Singular Name', 'text_domain' ),
@@ -40,7 +37,7 @@ function sedoo_inventory_register_instance_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( $taxo_names_instance, array( $cpt_names_application ), $args );
+	register_taxonomy( 'sedoo_inventory_instance_app', array( 'sedoo_inventory_app' ), $args );
 
 }
 add_action( 'init', 'sedoo_inventory_register_instance_tax', 0 );

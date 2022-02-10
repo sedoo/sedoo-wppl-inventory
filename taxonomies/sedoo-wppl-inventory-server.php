@@ -4,9 +4,6 @@
 // register server tax
 function sedoo_inventory_register_server_tax() {
 
-	global $taxo_names_server;
-	global $cpt_names_application;
-
 	$labels = array(
 		'name'                       => _x( 'Servers', 'Taxonomy General Name', 'text_domain' ),
 		'singular_name'              => _x( 'Server', 'Taxonomy Singular Name', 'text_domain' ),
@@ -40,7 +37,7 @@ function sedoo_inventory_register_server_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( $taxo_names_server, array( $cpt_names_application ), $args );
+	register_taxonomy( 'sedoo_inventory_server_app', array( 'sedoo_inventory_app' ), $args );
 
 }
 add_action( 'init', 'sedoo_inventory_register_server_tax', 0 );

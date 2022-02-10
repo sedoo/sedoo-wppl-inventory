@@ -4,9 +4,6 @@
 // register type d'application tax
 function sedoo_inventory_register_type_dapp_tax() {
 
-	global $taxo_names_type_dapp;
-	global $cpt_names_application;
-
 	$labels = array(
 		'name'                       => _x( 'Types d\'application', 'Taxonomy General Name', 'text_domain' ),
 		'singular_name'              => _x( 'Type d\'application', 'Taxonomy Singular Name', 'text_domain' ),
@@ -40,7 +37,7 @@ function sedoo_inventory_register_type_dapp_tax() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( $taxo_names_type_dapp, array( $cpt_names_application ), $args );
+	register_taxonomy( 'sedoo_inventory_type_app', array( 'sedoo_inventory_app' ), $args );
 
 }
 add_action( 'init', 'sedoo_inventory_register_type_dapp_tax', 0 );

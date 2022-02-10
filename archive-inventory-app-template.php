@@ -7,15 +7,6 @@
  * @package labs_by_Sedoo
  */
 
-global $cpt_names_application;
-global $cpt_names_contact;
-global $taxo_names_instance;
-global $taxo_names_server;
-global $taxo_names_structure;
-global $taxo_names_type_de_site;
-global $taxo_names_type_dapp;
-
-
 $args = array(
 	'numberposts' => -1,
 	'post_type'   => 'sedoo_inventory_app',
@@ -25,7 +16,6 @@ $args2 = array(
 	'post_type' => 'sedoo_inventory_app',
 );
 $query2 = new WP_Query($args2);
-
    
 $applications = get_posts( $args );
 
@@ -77,7 +67,7 @@ get_header();
 								<ul>
 								<!-- INSTANCES -->
 								<?php 
-								$instances = get_the_terms( $application->ID , $taxo_names_instance );
+								$instances = get_the_terms( $application->ID , 'sedoo_inventory_instance_app' );
 								if ( $instances) : ?>
 								<li><strong>Instances :</strong>
 								<?php foreach( $instances as $instance ) : ?> 
@@ -86,7 +76,7 @@ get_header();
 								<?php endif; ?>
 								<!-- STRUCTURES -->
 								<?php
-								$structures = get_the_terms( $application->ID , $taxo_names_structure );
+								$structures = get_the_terms( $application->ID , 'sedoo_inventory_structure_app' );
 								if ( $structures) :?>
 								<li><strong>Structures :</strong>
 								<?php foreach( $structures as $structure ) :?>
@@ -95,7 +85,7 @@ get_header();
 								<?php endif; ?>
 								<!-- SERVER -->
 								<?php
-								$servers = get_the_terms( $application->ID , $taxo_names_server );
+								$servers = get_the_terms( $application->ID , 'sedoo_inventory_server_app');
 								if ( $servers) : ?>
 								<li><strong>Server :</strong> 
 								<?php foreach( $servers as $server ) : ?>
@@ -104,7 +94,7 @@ get_header();
 								<?php endif; ?>
 								<!-- TYPE D'APP -->
 								<?php
-								$typedapps = get_the_terms( $application->ID , $taxo_names_type_dapp );
+								$typedapps = get_the_terms( $application->ID , 'sedoo_inventory_type_app' );
 								if ($typedapps) : ?>
 								<li><strong>Type d'application :</strong> 
 								<?php foreach( $typedapps as $typedapp ) :?>
@@ -114,7 +104,7 @@ get_header();
 								<?php endif; ?>
 								<!-- TYPE DE SITE -->
 								<?php
-								$typedesites = get_the_terms( $application->ID , $taxo_names_type_de_site );
+								$typedesites = get_the_terms( $application->ID , 'sedoo_inventory_type_site' );
 								if ($typedesites) : ?>
 								<li><strong>Type de site :</strong> 
 								<?php foreach( $typedesites as $typedesite ) :?>

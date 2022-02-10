@@ -13,19 +13,15 @@
  */
 
  // VARIABLES GLOBALES POUR CPT NAMES ET CUSTOM TAXONOMY
- global $cpt_names_application;
- global $cpt_names_contact;
- global $taxo_names_instance;
- global $taxo_names_structure;
- global $taxo_names_server;
- global $taxo_names_type_dapp;
- global $taxo_names_type_site;
+
+
 // custom taxonomy varaibles
  $taxo_names_instance = 'sedoo_inventory_instance_app';
  $taxo_names_structure = 'sedoo_inventory_structure_app';
  $taxo_names_server = 'sedoo_inventory_server_app';
  $taxo_names_type_dapp = 'sedoo_inventory_type_app';
  $taxo_names_type_site = 'sedoo_inventory_type_site';
+
 //  custom post typ variables
  $cpt_names_application = 'sedoo_inventory_app';
  $cpt_names_contact = 'sedoo_invent_contact';
@@ -39,10 +35,7 @@ function sedoo_wppl_inventory_styles() {
  function sedoo_wppl_inventory_scripts() {
  // le fichier js qui contient les fonctions accordeons
  $script_accordeons = plugins_url().'/sedoo-wppl-inventory/js/accordeon.js';
- wp_enqueue_script(
-     'script_inventory',
-     $script_accordeons, 
-     array('jquery'),
+ wp_enqueue_script('script_inventory', $script_accordeons, array('jquery'),
     '1.0.0',
     true);
  }
@@ -51,6 +44,7 @@ function sedoo_wppl_inventory_styles() {
 // CPT - POST TYPES
 include 'post-types/sedoo-wppl-inventory-application.php';
 include 'post-types/sedoo-wppl-inventory-contact.php';
+
 // TAXONOMIES
 include 'taxonomies/sedoo-wppl-inventory-structure.php';
 include 'taxonomies/sedoo-wppl-inventory-server.php';

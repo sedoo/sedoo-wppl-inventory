@@ -7,12 +7,16 @@
  * @package labs_by_Sedoo
  */
 
-global $taxo_names_instance;
-global $taxo_names_server;
-global $taxo_names_structure;
-global $taxo_names_type_dapp;
-global $taxo_names_type_site;
-global $cpt_names_application;
+// custom taxonomy varaibles
+$taxo_names_instance = 'sedoo_inventory_instance_app';
+$taxo_names_structure = 'sedoo_inventory_structure_app';
+$taxo_names_server = 'sedoo_inventory_server_app';
+$taxo_names_type_dapp = 'sedoo_inventory_type_app';
+$taxo_names_type_site = 'sedoo_inventory_type_site';
+
+//  custom post typ variables
+$cpt_names_application = 'sedoo_inventory_app';
+$cpt_names_contact = 'sedoo_invent_contact';
 
 //Les fields ACF Sigle application
 
