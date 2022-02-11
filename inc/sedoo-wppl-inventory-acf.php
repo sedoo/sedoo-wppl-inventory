@@ -1,0 +1,6 @@
+<?php
+
+/**
+ * Options du plugin
+ */
+

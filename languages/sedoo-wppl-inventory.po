@@ -1,0 +1,100 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sedoo - inventory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-03 09:01+0000\n"
+"PO-Revision-Date: 2021-05-27 14:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: Français\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.2; wp-5.7.2\n"
+"X-Domain: sedoo-wppl-inventory"
+
+#: taxonomy-inventory-template.php:130 template-parts/content-page.php:99
+msgid "Data access"
+msgstr "Accès aux données"
+
+#: taxonomy-inventory-template.php:127
+msgid "Description"
+msgstr ""
+
+#: taxonomy-inventory-template.php:129
+msgid "End date"
+msgstr "Date de fin"
+
+#: template-parts/content-page.php:76
+msgid "Finish"
+msgstr "Fini"
+
+#: template-parts/content-page.php:83
+msgid "From"
+msgstr "Du"
+
+#. Description of the plugin
+msgid "Gestion des inventory"
+msgstr ""
+
+#: taxonomy-inventory-template.php:126
+msgid "Name"
+msgstr "Nom"
+
+#. Author of the plugin
+msgid "Grégoire CASSAGNEAU"
+msgstr ""
+
+#: template-parts/content-page.php:102
+msgid "Official website"
+msgstr "Site officiel"
+
+#: template-parts/content-page.php:72
+msgid "On going"
+msgstr "En cours"
+
+#: template-parts/content-page.php:80
+msgid "Inventory dates"
+msgstr "Dates"
+
+#: template-parts/content-page.php:115
+msgid "Project services"
+msgstr "Services"
+
+#: template-parts/content-page.php:105
+msgid "Inventory strucutres"
+msgstr "structures"
+
+#: template-parts/content-page.php:125
+msgid "Project typology"
+msgstr "Typologies"
+
+#: template-parts/content-page.php:30
+msgid "Project website"
+msgstr "Site web"
+
+#: template-parts/content-page.php:136
+msgid "Related project"
+msgstr "inventory en lien"
+
+#. Name of the plugin
+msgid "Sedoo - inventory"
+msgstr "Sedoo - inventory"
+
+#: template-parts/content-page.php:86
+msgid "Since"
+msgstr "Depuis"
+
+#: taxonomy-inventory-template.php:128
+msgid "Start date"
+msgstr "Date de début"
+
+#: template-parts/content-page.php:89
+msgid "to"
+msgstr "au"
+
+#: template-parts/content-page.php:68
+msgid "Upcoming"
+msgstr "À venir"
