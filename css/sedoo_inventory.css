@@ -89,11 +89,11 @@ right:4px;
 margin-left:5px;
 transition:ease all 0.3s;
 }
-
+/* CONFLIT AVEC TOUT ajout js de la classe active 
 .active{
 background-color:#F0F0F0;
 }
 .active:after {
 transition:ease all 0.3s;
-content: "\2796"; /* Unicode character for "minus" sign (-) */
-}
+content: "\2796";
+} */
