@@ -38,7 +38,7 @@ get_header();
 			?>	
 			
 			<h1 class="page-title">
-				APPLICATION 
+				Sites web 
 			</h1>
 			<section class="post-wrapper sedoo_blocks_listearticle">
 				<?php 
@@ -48,17 +48,8 @@ get_header();
 					<article id="post-<?php echo $application->ID; ?>" <?php post_class('post'); ?>>
 						<a href="<?php echo get_permalink($application->ID); ?>"></a>
 						<header class="entry-header">
-							<figure>
-								<?php 
-								if (get_the_post_thumbnail_url($application->ID)) {
-									?>
-									<figure>
-										<img src="<?php echo get_the_post_thumbnail_url($application->ID); ?>" alt="">  
-									</figure>
-									<?php 
-								} else {
-									labs_by_sedoo_catch_that_image();                
-								}?>            
+							<figure>								
+								<img src=""<?php echo get_field('app_backup_sources_path');?> alt="illustration">          
 							</figure>
 						</header><!-- .entry-header -->
 						<div class="group-content">
