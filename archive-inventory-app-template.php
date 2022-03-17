@@ -49,60 +49,32 @@ get_header();
 						<a href="<?php echo get_permalink($application->ID); ?>"></a>
 						<header class="entry-header">
 							<figure>								
-								<img src=""<?php echo get_field('app_backup_sources_path');?> alt="illustration">          
+								<img src="<?php echo get_field('app_feature_image_url', $application->ID);?>" alt="illustration">          
 							</figure>
 						</header><!-- .entry-header -->
 						<div class="group-content">
 							<div class="entry-content">
 								<h3><?php echo get_the_title($application->ID); ?></h3>
-								<ul>
-								<!-- INSTANCES -->
-								<?php 
-								$instances = get_the_terms( $application->ID , 'sedoo_inventory_instance_app' );
-								if ( $instances) : ?>
-								<li><strong>Instances :</strong>
-								<?php foreach( $instances as $instance ) : ?> 
-									<a href="<?php echo $instance->slug ?>"><?php echo $instance->name ;?> </a>&nbsp;
-								<?php endforeach; ?></li>
-								<?php endif; ?>
-								<!-- STRUCTURES -->
-								<?php
-								$structures = get_the_terms( $application->ID , 'sedoo_inventory_structure_app' );
-								if ( $structures) :?>
-								<li><strong>Structures :</strong>
-								<?php foreach( $structures as $structure ) :?>
-									<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
-								<?php endforeach; ?></li>
-								<?php endif; ?>
-								<!-- SERVER -->
-								<?php
-								$servers = get_the_terms( $application->ID , 'sedoo_inventory_server_app');
-								if ( $servers) : ?>
-								<li><strong>Server :</strong> 
-								<?php foreach( $servers as $server ) : ?>
-									<a href="<?php print $server->slug ?>"><?php echo $server->name ;?></a>&nbsp; 
-								<?php endforeach; ?></li>
-								<?php endif; ?>
-								<!-- TYPE D'APP -->
-								<?php
-								$typedapps = get_the_terms( $application->ID , 'sedoo_inventory_type_app' );
-								if ($typedapps) : ?>
-								<li><strong>Type d'application :</strong> 
-								<?php foreach( $typedapps as $typedapp ) :?>
-									<a href="<?php print $typedapp->slug ?>"><?php echo $typedapp->name ;?></a>&nbsp;
-								<?php endforeach; ?>
-								</li>
-								<?php endif; ?>
-								<!-- TYPE DE SITE -->
-								<?php
-								$typedesites = get_the_terms( $application->ID , 'sedoo_inventory_type_site' );
-								if ($typedesites) : ?>
-								<li><strong>Type de site :</strong> 
-								<?php foreach( $typedesites as $typedesite ) :?>
-									<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
-								<?php endforeach; ?>
-								</li>
-								<?php endif; ?>
+								<ul>							
+									<!-- STRUCTURES -->
+									<?php
+									$structures = get_the_terms( $application->ID , 'sedoo_inventory_structure_app' );
+									if ( $structures) :?>
+									<li><strong>Structures :</strong>
+									<?php foreach( $structures as $structure ) :?>
+										<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
+									<?php endforeach; ?></li>
+									<?php endif; ?>
+									<!-- TYPE DE SITE -->
+									<?php
+									$typedesites = get_the_terms( $application->ID , 'sedoo_inventory_type_site' );
+									if ($typedesites) : ?>
+									<li><strong>Type de site :</strong> 
+									<?php foreach( $typedesites as $typedesite ) :?>
+										<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
+									<?php endforeach; ?>
+									</li>
+									<?php endif; ?>
 								</ul>
 								<p><?php echo get_the_excerpt($application->ID); ?></p>
 							</div><!-- .entry-content -->

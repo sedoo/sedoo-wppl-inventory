@@ -52,7 +52,7 @@ function sedoo_inventory_display_list_of_app($applications, $term) { ?>
                     //     labs_by_sedoo_catch_that_image();                
                     // }
                     ?> 
-					<img src=""<?php echo get_field('app_backup_sources_path');?> alt="illustration">   
+					<img src="<?php echo get_field('app_feature_image_url', $application->ID);?>" alt="illustration">   
                 </figure>
             </header><!-- .entry-header -->
             <div class="group-content">
