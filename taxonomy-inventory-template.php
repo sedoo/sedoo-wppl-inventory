@@ -45,13 +45,14 @@ function sedoo_inventory_display_list_of_app($applications, $term) { ?>
             <a href="<?php echo get_the_permalink($application->ID); ?>"></a>
             <header class="entry-header">
                 <figure>
-                    <?php 
-                    if (has_post_thumbnail($application->ID)) {
-                        echo get_the_post_thumbnail($application->ID);
-                    } else {
-                        labs_by_sedoo_catch_that_image();                
-                    }
-                    ?>          
+					<?php
+                    // if (has_post_thumbnail($application->ID)) {
+                    //     echo get_the_post_thumbnail($application->ID);
+                    // } else {
+                    //     labs_by_sedoo_catch_that_image();                
+                    // }
+                    ?> 
+					<img src=""<?php echo get_field('app_backup_sources_path');?> alt="illustration">   
                 </figure>
             </header><!-- .entry-header -->
             <div class="group-content">
