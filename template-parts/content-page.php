@@ -74,7 +74,12 @@ $teams = get_field( 'field_61d72296b3bea' );
 						$title = mb_strimwidth($title, 0, 60, '...');
 						echo $title;
 						?>
-					</h1> 
+					</h1>
+
+                    <section>
+                        <?php the_content(); ?>
+                    </section>
+
 					<section class="inventoryInfoContener">
 						
 						<!-- CPT CONTACT -->
@@ -102,176 +107,186 @@ $teams = get_field( 'field_61d72296b3bea' );
 						<!-- end cpt contact -->	
 						<!-- CPT APPLICATION -->
 						<?php if ( get_post_type( get_the_ID() ) == 'sedoo_inventory_app' ) : ?>
-						
 							<?php if($app_url || $app_url_backoff || $app_contacts || $app_date || $app_password || $app_ldap_connect || $instances || $structures || $typedapps || $typedesites || $servers ) : ?>
-								<h3>INFORMATION</h3>
-								<!---->
-								<?php if($app_url) : ?>
-								<p><b>URL : </b><span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
-								<?php endif; ?>
-								<!---->
-								<?php if($app_url_backoff) : ?>
-								<p><b>BACKOFFICE : </b><span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
-								<?php endif; ?>
-								<!---->
-								<?php if($app_proxy) : ?>
-								<p><b>PROXY : </b><span><?php echo $app_proxy; ?></span></p>
-								<?php endif; ?>
-								<!---->
-								<?php if($app_contacts || $app_url_backoff ) :?>
-								<p>
-								<strong>CONTACT :</strong>
-									<?php foreach( $app_contacts as $app_contact ): ?>
-									<a href="<?php echo get_permalink($app_contact->ID);?>">
-									<?php echo get_the_title($app_contact->ID); ?>
-									</a> &nbsp;<?php endforeach; ?>
-								<?php endif; ?>
-								</p>
-								<!---->
-								<?php if($app_date) : ?>
-								<p><b>DATE DE PREMIERE MISE EN LIGNE : </b><span><?php echo $app_date; ?></span></p>
-								<?php endif; ?>
-								
-								<!---->
-								<?php if($instances) :?>
-								<p>
-								<strong>INSTANCE :</strong>
-									<?php foreach( $instances as $instance ): ?>
-									<a href="<?php echo get_term_link($instance->term_id);?>">
-									<?php echo esc_html($instance->name); ?>
-									</a> &nbsp;<?php endforeach; ?>
-								<?php endif; ?>
-								</p>
-								<!---->
-								<?php if($structures) :?>
-								<p>
-								<strong>STRUCTURE :</strong>
-									<?php foreach( $structures as $structure ): ?>
-									<a href="<?php echo get_term_link($structure->term_id);?>">
-									<?php echo esc_html($structure->name); ?>
-									</a> &nbsp;<?php endforeach; ?>
+								<?php
+								/******************************************************************************************* */
+								if( is_user_logged_in() ) {
+									
+								?>
+								<section data-role="private">
+									<h3>INFORMATION</h3>
+									<!---->
+									<?php if($app_url) { ?>
+									<p><b>URL : </b><span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span></p>
+									<?php } ?>
+									<!---->
+									<?php if($app_url_backoff) { ?>
+									<p><b>BACKOFFICE : </b><span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
+									<?php } ?>
+
+									<!---->
+									<?php if($app_proxy) { ?>
+									<p><b>PROXY : </b><span><?php echo $app_proxy; ?></span></p>
+									<?php } ?>
+
+									<!---->
+									<?php if($structures) {?>
+									<p>
+									<strong>STRUCTURE :</strong>
+										<?php foreach( $structures as $structure ){ ?>
+										<a href="<?php echo get_term_link($structure->term_id);?>">
+										<?php echo esc_html($structure->name); ?>
+										</a> &nbsp;
+										<?php } ?>
 									</p>
-								<?php endif; ?>
-								
-								<!---->
-								<?php if($typedapps) :?>
-								<p>
-								<strong>TYPE D'APPLICATION :</strong>
-									<?php foreach( $typedapps as $typedapp ): ?>
-									<a href="<?php echo get_term_link($typedapp->term_id);?>">
-									<?php echo esc_html($typedapp->name); ?>
-									</a> &nbsp;<?php endforeach; ?>
-								<?php endif; ?>
-								</p>
-								<!---->
-								<?php if($typedesites) :?>
-								<p>
-								<strong>TYPE DE SITE :</strong>
-									<?php foreach( $typedesites as $typedesite ): ?>
-									<a href="<?php echo get_term_link($typedesite->term_id);?>">
-									<?php echo esc_html($typedesite->name); ?>
-									</a> &nbsp;<?php endforeach; ?>
-								<?php endif; ?>
-								</p>
-								<!---->
-								<?php if($servers) :?>
-								<p>
-									<strong>SERVEUR :</strong>
-									<?php foreach( $servers as $server ): ?>
-									<a href="<?php echo get_term_link($server->term_id);?>">
-									<?php echo esc_html($server->name); ?>
-									</a> &nbsp;<?php endforeach; ?>
-								<?php endif; ?>
-								</p>
+									<?php } ?>
 
-							<?php endif; ?>
-							<?php if($app_ldap_connect || $app_password) : ?>
-								<div class="accordion">
-									<h3>CONNECTIVITÉ</h3>
-								</div>
-								<!---->
-								<div class="panel">
-								<?php if($app_password) : ?>
-								<p><b>MOT DE PASSE : </b><span><?php echo $app_password; ?></span></p>
-								<?php endif; ?>
-								<!---->
-								<?php if($app_ldap_connect) : ?>
-								<p><b>LDAP :</b>
-								<?php if ($app_ldap_connect == 1) : ?> 
-								Connecté au LDAP <?php else : ?> Non Connecté au LDAP <?php endif; ?>
-								<?php endif; ?>
-								</p>
-								</div>
-							<?php endif; ?>
-
-							<!-- BACKUP -->
-							<?php if($app_backup_src || $app_backup_src || $app_backup_data || $app_backup_local || $app_backup_script || $app_backup_destination || $app_backup_frequence || $app_backup_volume ) : ?>
-								
-								<div class="accordion ">
-									<h3>BACKUP</h3>
-								</div>
-
-								<div class="panel">
-
-									<?php if($app_backup_src) : ?>
-									<p><b>BACKUP SOURCE : </b><span><a href="<?php echo $app_backup_src; ?>" title="lien vers <?php echo $app_backup_src; ?>" ><?php echo $app_backup_src; ?></a></span></p>
+									<?php if($app_contacts || $app_url_backoff ) :?>
+									<p>
+									<strong>CONTACT :</strong>
+										<?php foreach( $app_contacts as $app_contact ): ?>
+										<a href="<?php echo get_permalink($app_contact->ID);?>">
+										<?php echo get_the_title($app_contact->ID); ?>
+										</a> &nbsp;<?php endforeach; ?>								
+									</p>
 									<?php endif; ?>
-
-									<?php if($app_backup_data) : ?>
-									<p><b>BACKUP DATA : </b><span><a href="<?php echo $app_backup_data; ?>" title="lien vers <?php echo $app_backup_data; ?>" ><?php echo $app_backup_data; ?></a></span></p>
-									<?php endif; ?>
-
-									<?php if($app_backup_local) : ?>
-									<p><b>BACKUP LOCAL : </b><span><a href="<?php echo $app_backup_local; ?>" title="lien vers <?php echo $app_backup_local; ?>" ><?php echo $app_backup_local; ?></a></span></p>
-									<?php endif; ?>
-
-									<?php if($app_backup_script) : ?>
-									<p><b>BACKUP SCRIPT : </b><span><?php echo $app_backup_script; ?></span></p>
-									<?php endif; ?>
-
-									<?php if($app_backup_destination) : ?>
-									<p><b>BACKUP DESTINATION : </b><span><a href="<?php echo $app_backup_destination; ?>" title="lien vers <?php echo $app_backup_destination; ?>" ><?php echo $app_backup_destination; ?></a></span></p>
-									<?php endif; ?>
-
-									<?php if($app_backup_frequence) : ?>
-									<p><b>BACKUP FRÉQUENCE : </b><span><?php echo $app_backup_frequence; ?></span></p>
-									<?php endif; ?>
-
-									<?php if($app_backup_volume) : ?>
-									<p><b>BACKUP VOLUME : </b><span><?php echo $app_backup_volume; ?></span></p>
+									<?php if($app_date) : ?>
+									<p><b>DATE DE PREMIERE MISE EN LIGNE : </b><span><?php echo $app_date; ?></span></p>
 									<?php endif; ?>
 									
-								</div>
-
-							<?php endif; ?>
-							<?php if($app_documentation_url || $app_documentation_fichier) : ?>
-
-								<div class="accordion">
-								<h3>DOCUMENTATION</h3>
-								</div>
-
-								<div class="panel">
-								<?php if($app_documentation_url) : ?>
-								<p><b>DOCUMENTATION URL : </b><span><a href="<?php echo $app_documentation_url; ?>" title="lien vers <?php echo $app_documentation_url; ?>" ><?php echo $app_documentation_url; ?></a></span></p>
+									<!---->
+									<?php if($instances) :?>
+									<p>
+									<strong>INSTANCE :</strong>
+										<?php foreach( $instances as $instance ): ?>
+										<a href="<?php echo get_term_link($instance->term_id);?>">
+										<?php echo esc_html($instance->name); ?>
+										</a> &nbsp;<?php endforeach; ?>
+									<?php endif; ?>
+									</p>
+									
+									
+									<!---->
+									<?php if($typedapps) :?>
+									<p>
+									<strong>TYPE D'APPLICATION :</strong>
+										<?php foreach( $typedapps as $typedapp ): ?>
+										<a href="<?php echo get_term_link($typedapp->term_id);?>">
+										<?php echo esc_html($typedapp->name); ?>
+										</a> &nbsp;<?php endforeach; ?>
+									<?php endif; ?>
+									</p>
+									<!---->
+									<?php if($typedesites) :?>
+									<p>
+									<strong>TYPE DE SITE :</strong>
+										<?php foreach( $typedesites as $typedesite ): ?>
+										<a href="<?php echo get_term_link($typedesite->term_id);?>">
+										<?php echo esc_html($typedesite->name); ?>
+										</a> &nbsp;<?php endforeach; ?>
+									<?php endif; ?>
+									</p>
+									<!---->
+									<?php if($servers) :?>
+									<p>
+										<strong>SERVEUR :</strong>
+										<?php foreach( $servers as $server ): ?>
+										<a href="<?php echo get_term_link($server->term_id);?>">
+										<?php echo esc_html($server->name); ?>
+										</a> &nbsp;<?php endforeach; ?>
+									<?php endif; ?>
+									</p>
+									<?php if($app_ldap_connect || $app_password) : ?>
+									<div class="accordion">
+										<h3>CONNECTIVITÉ</h3>
+									</div>
+									<!---->
+									<div class="panel">
+									<?php if($app_password) : ?>
+									<p><b>MOT DE PASSE : </b><span><?php echo $app_password; ?></span></p>
+									<?php endif; ?>
+									<!---->
+									<?php if($app_ldap_connect) : ?>
+									<p><b>LDAP :</b>
+									<?php if ($app_ldap_connect == 1) : ?> 
+									Connecté au LDAP <?php else : ?> Non Connecté au LDAP <?php endif; ?>
+									<?php endif; ?>
+									</p>
+									</div>
 								<?php endif; ?>
 
-								<?php if($app_documentation_fichier) : ?>
-								<p><b>DOCUMENTATION FICHIER : </b><span><a href="<?php echo $app_documentation_fichier; ?>" title="lien vers <?php echo $app_documentation_fichier; ?>" ><?php echo $app_documentation_fichier; ?></a></span></p>
+								<!-- BACKUP -->
+								<?php if($app_backup_src || $app_backup_src || $app_backup_data || $app_backup_local || $app_backup_script || $app_backup_destination || $app_backup_frequence || $app_backup_volume ) : ?>
+									
+									<div class="accordion ">
+										<h3>BACKUP</h3>
+									</div>
+
+									<div class="panel">
+
+										<?php if($app_backup_src) : ?>
+										<p><b>BACKUP SOURCE : </b><span><a href="<?php echo $app_backup_src; ?>" title="lien vers <?php echo $app_backup_src; ?>" ><?php echo $app_backup_src; ?></a></span></p>
+										<?php endif; ?>
+
+										<?php if($app_backup_data) : ?>
+										<p><b>BACKUP DATA : </b><span><a href="<?php echo $app_backup_data; ?>" title="lien vers <?php echo $app_backup_data; ?>" ><?php echo $app_backup_data; ?></a></span></p>
+										<?php endif; ?>
+
+										<?php if($app_backup_local) : ?>
+										<p><b>BACKUP LOCAL : </b><span><a href="<?php echo $app_backup_local; ?>" title="lien vers <?php echo $app_backup_local; ?>" ><?php echo $app_backup_local; ?></a></span></p>
+										<?php endif; ?>
+
+										<?php if($app_backup_script) : ?>
+										<p><b>BACKUP SCRIPT : </b><span><?php echo $app_backup_script; ?></span></p>
+										<?php endif; ?>
+
+										<?php if($app_backup_destination) : ?>
+										<p><b>BACKUP DESTINATION : </b><span><a href="<?php echo $app_backup_destination; ?>" title="lien vers <?php echo $app_backup_destination; ?>" ><?php echo $app_backup_destination; ?></a></span></p>
+										<?php endif; ?>
+
+										<?php if($app_backup_frequence) : ?>
+										<p><b>BACKUP FRÉQUENCE : </b><span><?php echo $app_backup_frequence; ?></span></p>
+										<?php endif; ?>
+
+										<?php if($app_backup_volume) : ?>
+										<p><b>BACKUP VOLUME : </b><span><?php echo $app_backup_volume; ?></span></p>
+										<?php endif; ?>
+										
+									</div>
+
 								<?php endif; ?>
-								</div>
+								<?php if($app_documentation_url || $app_documentation_fichier) : ?>
+
+									<div class="accordion">
+									<h3>DOCUMENTATION</h3>
+									</div>
+
+									<div class="panel">
+									<?php if($app_documentation_url) : ?>
+									<p><b>DOCUMENTATION URL : </b><span><a href="<?php echo $app_documentation_url; ?>" title="lien vers <?php echo $app_documentation_url; ?>" ><?php echo $app_documentation_url; ?></a></span></p>
+									<?php endif; ?>
+
+									<?php if($app_documentation_fichier) : ?>
+									<p><b>DOCUMENTATION FICHIER : </b><span><a href="<?php echo $app_documentation_fichier; ?>" title="lien vers <?php echo $app_documentation_fichier; ?>" ><?php echo $app_documentation_fichier; ?></a></span></p>
+									<?php endif; ?>
+									</div>
+								<?php endif; ?>
+
+
+								</section>
+
+								<?php
+								}
+								/******************************************************************************************* */
+								?>
+
+
 							<?php endif; ?>
+							
 
 						<?php endif; ?>
 						
-					</section>
-                    <section>
-                        <?php the_content(); ?>
-                    </section>
-              
-                    <footer class="">
-                        
-                    </footer>
-					
+					</section>					
 				</article>
             
 			</main><!-- #main -->
@@ -279,18 +294,26 @@ $teams = get_field( 'field_61d72296b3bea' );
 				<aside class="contextual-sidebar project-sidebar contextual-inventory-sidebar">
 					<!-- ASIDE FOR CPT APPLICATION -->			
 					<?php if ( get_post_type( get_the_ID() ) == 'sedoo_inventory_app' ) : ?>
-
-					<?php if($app_contacts) : ?>
+						<?php if($app_url || $app_url_backoff) {?>
 						<section>
-							<h2> CONTACT(S)</h2>
-							<p>
-								<?php foreach( $app_contacts as $app_contact ): ?>
-								<a href="<?php echo get_permalink($app_contact->ID);?>">
-								<?php echo get_the_title($app_contact->ID); ?>
-								</a> &nbsp;<?php endforeach; ?>
+							<h2>URL :</h2>
+							<p><strong>Site web :</strong><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></p>
+							<p><strong>Administration :</strong> <a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></p>
 							</p>
 						</section>
-						<?php endif;
+						<?php } ?>
+						<?php if($app_contacts) { ?>
+						<section>
+							<h2> CONTACT(S)</h2>
+							<ul>
+								<?php foreach( $app_contacts as $app_contact ){ ?>
+								<li>
+									<a href="<?php echo get_permalink($app_contact->ID);?>"><?php echo get_the_title($app_contact->ID); ?></a> 
+								</li>
+								<?php } ?>
+							</p>
+						</section>
+						<?php }
 
 						if($app_date) : ?>
 						<section>
@@ -299,18 +322,7 @@ $teams = get_field( 'field_61d72296b3bea' );
 						</section>
 						<?php endif; ?>
 						
-						<?php if($typedapps) :?>
-							<section>
-						<h2>TYPE DE SITE :</h2>
-						<p>
-							<?php foreach( $typedapps as $typedapp ): ?>
-							<a href="<?php echo get_term_link($typedapp->term_id);?>">
-							<?php echo esc_html($typedapp->name); ?>
-							
-							</a> &nbsp;<?php endforeach; ?>
-						</p>
-							</section>
-						<?php endif; ?>
+						
 						</p>
 
 						<?php if($structures) :?>
@@ -324,14 +336,7 @@ $teams = get_field( 'field_61d72296b3bea' );
 						</section>
 						<?php endif; ?>
 
-						<?php if($app_url || $app_url_backoff) :?>
-						<section>
-							<h2>URL :</h2>
-								<p>Site internet :<span><a href="<?php echo $app_url; ?>" title="lien vers <?php echo $app_url; ?> "><?php echo $app_url; ?></a></span><br/>
-								Back-Office :<span><a href="<?php echo $app_url_backoff; ?>" title="lien vers <?php echo $app_url_backoff; ?>" ><?php echo $app_url_backoff; ?></a></span></p>
-							</p>
-						</section>
-						<?php endif; ?>
+						
 						<?php endif; ?>
 						<!-- end aside cpt application -->
 
@@ -356,9 +361,5 @@ $teams = get_field( 'field_61d72296b3bea' );
 			<?php
 		?>
 		</div>
-	
 	</div>
-	<style>
-
-	</style>
 	

@@ -87,7 +87,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'name' => 'sedoo_inventory_bidirectionnal_relation',
                 'type' => 'relationship',
                 'instructions' => 'Saisissez le contact en charge de la gestion du site ou de l\'application',
-                'required' => 1,
+                'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
                     'width' => '',
@@ -126,6 +126,22 @@ if( function_exists('acf_add_local_field_group') ):
                 'display_format' => 'd/m/Y',
                 'return_format' => 'd/m/Y',
                 'first_day' => 1,
+            ),
+            array(
+                'key' => 'field_620134b9f80d1',
+                'label' => 'URL image d\'entete du site',
+                'name' => 'app_feature_image_url',
+                'type' => 'url',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
             ),
             array(
                 'key' => 'field_62013a4094833',
@@ -376,7 +392,7 @@ if( function_exists('acf_add_local_field_group') ):
                     'class' => '',
                     'id' => '',
                 ),
-                'default_value' => '',
+                'default_value' => 'https://labo.obs-mip.fr/doc/',
                 'placeholder' => '',
             ),
             array(
