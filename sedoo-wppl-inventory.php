@@ -7,7 +7,7 @@
  * Author URI:      https://www.sedoo.fr 
  * Text Domain:     sedoo-wppl-inventory
  * Domain Path:     /languages
- * Version:         0.2.2
+ * Version:         0.2.3
  * GitHub Plugin URI: sedoo/sedoo-wppl-inventory
  * GitHub Branch:     master
  */
