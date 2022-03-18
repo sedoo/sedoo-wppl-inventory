@@ -91,16 +91,23 @@ $teams = get_field( 'field_61d72296b3bea' );
 							<img class="contactImg" src="<?php echo $contact_img; ?>"/>
 							<?php }?>
 							<?php if($contact_name) { ?>
-							<p><b>NOM : </b><span><?php echo $contact_name; ?>	</span></p>
+							<p><strong>NOM : </strong><span><?php echo $contact_name; ?>	</span></p>
 							<?php } ?>
 							<?php if($contact_first_name) { ?>
-							<p><b>PRÉNOM : </b><span><?php echo $contact_first_name; ?>	</span></p>
+							<p><strong>PRÉNOM : </strong><span><?php echo $contact_first_name; ?>	</span></p>
 							<?php } ?>
 							<?php if($contact_mail) { ?>
-							<p><b>MAIL : </b><span><?php echo $contact_mail; ?></span></p>
+							<p><strong>MAIL : </strong>
+								<span>
+								<?php 
+								$userMail = explode("@", $contact_mail); 
+								echo $userMail[0]."<span class=\"hideEmail\">Dear bot, you won't get my mail address</span>@<span class=\"hideEmail\">and my domain...</span>".$userMail[1];
+								?>
+								</span>
+							</p>
 							<?php } ?>
 							<?php if($contact_phone) { ?>
-							<p><b>TÉLÉPHONE : </b><span><?php echo $contact_phone; ?></span></p>
+							<p><strong>TÉLÉPHONE : </strong><span><?php echo $contact_phone; ?></span></p>
 							<?php } ?>
 
 						<?php endif; ?>
