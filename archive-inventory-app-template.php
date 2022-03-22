@@ -6,16 +6,20 @@
  *
  * @package labs_by_Sedoo
  */
-
+$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 $args = array(
-	'numberposts' => -1,
+	'posts_per_page'=> 5,
 	'post_type'   => 'sedoo_inventory_app',
 	'order' => 'ASC',
+	'paged' => $paged,
 );
 $args2 = array(
 	'post_type' => 'sedoo_inventory_app',
+	'posts_per_page'=> 5,
+	'order' => 'ASC',
+	'paged' => $paged,
 );
-$query2 = new WP_Query($args2);
+$my_query2 = new WP_Query($args2);
    
 $applications = get_posts( $args );
 
@@ -41,52 +45,58 @@ get_header();
 				Sites web 
 			</h1>
 			<section class="post-wrapper sedoo_blocks_listearticle">
-				<?php 
-					foreach($applications as $application) :
-						
-					?>
-					<article id="post-<?php echo $application->ID; ?>" <?php post_class('post'); ?>>
-						<a href="<?php echo get_permalink($application->ID); ?>"></a>
-						<header class="entry-header">
-							<figure>								
-								<img src="<?php echo get_field('app_feature_image_url', $application->ID);?>" alt="illustration">          
-							</figure>
-						</header><!-- .entry-header -->
-						<div class="group-content">
-							<div class="entry-content">
-								<h3><?php echo get_the_title($application->ID); ?></h3>
-								<ul>							
-									<!-- STRUCTURES -->
-									<?php
-									$structures = get_the_terms( $application->ID , 'sedoo_inventory_structure_app' );
-									if ( $structures) :?>
-									<li><strong>Structures :</strong>
-									<?php foreach( $structures as $structure ) :?>
-										<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
-									<?php endforeach; ?></li>
-									<?php endif; ?>
-									<!-- TYPE DE SITE -->
-									<?php
-									$typedesites = get_the_terms( $application->ID , 'sedoo_inventory_type_site' );
-									if ($typedesites) : ?>
-									<li><strong>Type de site :</strong> 
-									<?php foreach( $typedesites as $typedesite ) :?>
-										<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
-									<?php endforeach; ?>
-									</li>
-									<?php endif; ?>
-								</ul>
-								<p><?php echo get_the_excerpt($application->ID); ?></p>
-							</div><!-- .entry-content -->
-							<footer class="entry-footer">
-								<a href="<?php echo get_permalink($application->ID); ?>"><?php echo __('Read more', 'sedoo-wpth-labs'); ?> →</a>
-							</footer><!-- .entry-footer -->
-						</div>
-					</article><!-- #post-->
-					<?php 
-					endforeach;
-				?>
+			<?php 
+			
+				if ($my_query2 -> have_posts() ) : while ( $my_query2->have_posts() ) : $my_query2->the_post();
+				$post_id = get_the_ID();?>
+			
+				<article id="post-<?php echo $post_id; ?>" <?php post_class('post'); ?>>
+				<header class="entry-header">
+					<a href="<?php the_permalink(); ?>">
+				<figure>	
+					<?php the_post_thumbnail();?>
+				</figure>
+				</a>
+				</header><!-- .entry-header -->
+				<div class="group-content">
+					<div class="entry-content">
+						<h3><?php the_title(); ?></h3>
+					</div>
+					<ul>
+					<!-- STRUCTURES -->
+					<?php
+					$structures = get_the_terms( $post_id, 'sedoo_inventory_structure_app' );
+					if ( $structures) :?>
+					<li><strong>Structures :</strong>
+					<?php foreach( $structures as $structure ) :?>
+						<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
+					<?php endforeach; ?></li>
+					<?php endif; ?>
+						<!-- TYPE DE SITE -->
+					<?php
+					$typedesites = get_the_terms( $post_id, 'sedoo_inventory_type_site' );
+					if ($typedesites) : ?>
+					<li><strong>Type de site :</strong> 
+					<?php foreach( $typedesites as $typedesite ) :?>
+						<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
+					<?php endforeach; ?>
+					</li>
+					<?php endif; ?>
+					</ul>
+					<?php the_excerpt(); ?>
+					</div>
+				<footer class="entry-footer">
+					<a href="<?php the_permalink(); ?>"><?php echo __('Read more', 'sedoo-wpth-labs'); ?> →</a>
+				</footer>
+				</article>
+				
+		<?php endwhile;
+		endif;
+		wp_rest_postdata();
+			?>
 			</section>
+
+			
 		</main><!-- #main -->
 		<aside class="contextual-sidebar"> 
 			<?php
@@ -194,6 +204,20 @@ get_header();
 			</section>
 		</aside>
 	</div><!-- #primary -->
+	<ul class="kt-pagination">
+     	<?php
+$big = 999999999; // need an unlikely integer
+
+echo paginate_links( array(
+	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+	'format' => '?paged=%#%',
+	'current' => max( 1, get_query_var('paged') ),
+	'total' => $loop->max_num_pages,
+	'prev_text' => __(''),
+    'next_text' => __(''),
+) );
+?>
+    </ul>
 	</div>
 <?php
 get_footer();
