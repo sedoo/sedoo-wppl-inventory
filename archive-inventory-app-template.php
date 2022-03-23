@@ -6,22 +6,14 @@
  *
  * @package labs_by_Sedoo
  */
-$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-$args = array(
-	'posts_per_page'=> 5,
-	'post_type'   => 'sedoo_inventory_app',
-	'order' => 'ASC',
-	'paged' => $paged,
-);
-$args2 = array(
+$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+$application_args = array(
 	'post_type' => 'sedoo_inventory_app',
-	'posts_per_page'=> 5,
+	'posts_per_page'=> 10, //the same as the parse_query filter in our sedoo-wppl-functions.php file - in order to prevent default pagination of wordpress used for classical post
 	'order' => 'ASC',
 	'paged' => $paged,
 );
-$my_query2 = new WP_Query($args2);
-   
-$applications = get_posts( $args );
+$query_all_applications = new WP_Query($application_args);
 
 get_header();
 
@@ -45,11 +37,13 @@ get_header();
 				Sites web 
 			</h1>
 			<section class="post-wrapper sedoo_blocks_listearticle">
-			<?php 
+			<?php if ($query_all_applications -> have_posts() ) : ?>
 			
-				if ($my_query2 -> have_posts() ) : while ( $my_query2->have_posts() ) : $my_query2->the_post();
-				$post_id = get_the_ID();?>
-			
+			<!-- the loop -->
+			<?php while ( $query_all_applications->have_posts() ) : $query_all_applications->the_post();?>
+				
+				<?php $post_id = get_the_ID(); ?>
+
 				<article id="post-<?php echo $post_id; ?>" <?php post_class('post'); ?>>
 				<header class="entry-header">
 					<a href="<?php the_permalink(); ?>">
@@ -90,12 +84,21 @@ get_header();
 				</footer>
 				</article>
 				
-		<?php endwhile;
-		endif;
-		wp_rest_postdata();
-			?>
-			</section>
-
+				<?php endwhile;?>
+				<!-- end of the loop -->
+				</section>
+				<div>
+				<!-- pagination here -->
+				<?php
+				if (function_exists( 'custom_pagination' )) :
+					custom_pagination( $query_all_applications->max_num_pages,"",$paged );
+				endif;
+				?>
+				<?php else:  ?>
+				<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+				<?php endif; ?>
+			
+				</div>
 			
 		</main><!-- #main -->
 		<aside class="contextual-sidebar"> 
@@ -203,21 +206,7 @@ get_header();
 				<?php } ?>
 			</section>
 		</aside>
-	</div><!-- #primary -->
-	<ul class="kt-pagination">
-     	<?php
-$big = 999999999; // need an unlikely integer
-
-echo paginate_links( array(
-	'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-	'format' => '?paged=%#%',
-	'current' => max( 1, get_query_var('paged') ),
-	'total' => $loop->max_num_pages,
-	'prev_text' => __(''),
-    'next_text' => __(''),
-) );
-?>
-    </ul>
-	</div>
-<?php
-get_footer();
+		</div><!-- #primary -->
+		
+		<?php wp_reset_postdata(); ?>		
+		<?php get_footer();

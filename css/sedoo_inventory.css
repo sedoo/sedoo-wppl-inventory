@@ -102,3 +102,28 @@ background-color:#F0F0F0;
 transition:ease all 0.3s;
 content: "\2796";
 } */
+
+/* pagination */
+body.paged #main {
+    width: 100%;
+  }
+.custom-pagination{
+    display:block;
+    text-align: center;
+    padding:50px 0;
+}
+.custom-pagination span, .custom-pagination a{
+    display:inline-block;
+    vertical-align: middle;
+    padding: 5px 10px;
+}
+.custom-pagination .prev, .custom-pagination .next {
+    font-weight: 600;
+}
+.custom-pagination .current{
+   font-weight: 600;
+   background-color: rgb(240,240,240);
+}
+.custom-pagination .paginateLinks{
+    border:1px solid grey;
+}
