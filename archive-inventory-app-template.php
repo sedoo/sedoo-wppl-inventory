@@ -6,18 +6,14 @@
  *
  * @package labs_by_Sedoo
  */
-
-$args = array(
-	'numberposts' => -1,
-	'post_type'   => 'sedoo_inventory_app',
-	'order' => 'ASC',
-);
-$args2 = array(
+$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+$application_args = array(
 	'post_type' => 'sedoo_inventory_app',
+	'posts_per_page'=> 10, //the same as the parse_query filter in our sedoo-wppl-functions.php file - in order to prevent default pagination of wordpress used for classical post
+	'order' => 'ASC',
+	'paged' => $paged,
 );
-$query2 = new WP_Query($args2);
-   
-$applications = get_posts( $args );
+$query_all_applications = new WP_Query($application_args);
 
 get_header();
 
@@ -41,52 +37,69 @@ get_header();
 				Sites web 
 			</h1>
 			<section class="post-wrapper sedoo_blocks_listearticle">
-				<?php 
-					foreach($applications as $application) :
-						
-					?>
-					<article id="post-<?php echo $application->ID; ?>" <?php post_class('post'); ?>>
-						<a href="<?php echo get_permalink($application->ID); ?>"></a>
-						<header class="entry-header">
-							<figure>								
-								<img src="<?php echo get_field('app_feature_image_url', $application->ID);?>" alt="illustration">          
-							</figure>
-						</header><!-- .entry-header -->
-						<div class="group-content">
-							<div class="entry-content">
-								<h3><?php echo get_the_title($application->ID); ?></h3>
-								<ul>							
-									<!-- STRUCTURES -->
-									<?php
-									$structures = get_the_terms( $application->ID , 'sedoo_inventory_structure_app' );
-									if ( $structures) :?>
-									<li><strong>Structures :</strong>
-									<?php foreach( $structures as $structure ) :?>
-										<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
-									<?php endforeach; ?></li>
-									<?php endif; ?>
-									<!-- TYPE DE SITE -->
-									<?php
-									$typedesites = get_the_terms( $application->ID , 'sedoo_inventory_type_site' );
-									if ($typedesites) : ?>
-									<li><strong>Type de site :</strong> 
-									<?php foreach( $typedesites as $typedesite ) :?>
-										<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
-									<?php endforeach; ?>
-									</li>
-									<?php endif; ?>
-								</ul>
-								<p><?php echo get_the_excerpt($application->ID); ?></p>
-							</div><!-- .entry-content -->
-							<footer class="entry-footer">
-								<a href="<?php echo get_permalink($application->ID); ?>"><?php echo __('Read more', 'sedoo-wpth-labs'); ?> →</a>
-							</footer><!-- .entry-footer -->
-						</div>
-					</article><!-- #post-->
-					<?php 
-					endforeach;
+			<?php if ($query_all_applications -> have_posts() ) : ?>
+			
+			<!-- the loop -->
+			<?php while ( $query_all_applications->have_posts() ) : $query_all_applications->the_post();?>
+				
+				<?php $post_id = get_the_ID(); ?>
+
+				<article id="post-<?php echo $post_id; ?>" <?php post_class('post'); ?>>
+				<header class="entry-header">
+					<a href="<?php the_permalink(); ?>">
+				<figure>	
+					<?php the_post_thumbnail();?>
+				</figure>
+				</a>
+				</header><!-- .entry-header -->
+				<div class="group-content">
+					<div class="entry-content">
+						<h3><?php the_title(); ?></h3>
+					</div>
+					<ul>
+					<!-- STRUCTURES -->
+					<?php
+					$structures = get_the_terms( $post_id, 'sedoo_inventory_structure_app' );
+					if ( $structures) :?>
+					<li><strong>Structures :</strong>
+					<?php foreach( $structures as $structure ) :?>
+						<a href="<?php print $structure->slug ?>"><?php echo $structure->name ;?></a>&nbsp;
+					<?php endforeach; ?></li>
+					<?php endif; ?>
+						<!-- TYPE DE SITE -->
+					<?php
+					$typedesites = get_the_terms( $post_id, 'sedoo_inventory_type_site' );
+					if ($typedesites) : ?>
+					<li><strong>Type de site :</strong> 
+					<?php foreach( $typedesites as $typedesite ) :?>
+						<a href="<?php print $typedesite->slug ?>"><?php echo $typedesite->name ;?></a>&nbsp;
+					<?php endforeach; ?>
+					</li>
+					<?php endif; ?>
+					</ul>
+					<?php the_excerpt(); ?>
+					</div>
+				<footer class="entry-footer">
+					<a href="<?php the_permalink(); ?>"><?php echo __('Read more', 'sedoo-wpth-labs'); ?> →</a>
+				</footer>
+				</article>
+				
+				<?php endwhile;?>
+				<!-- end of the loop -->
+				</section>
+				<div>
+				<!-- pagination here -->
+				<?php
+				if (function_exists( 'custom_pagination' )) :
+					custom_pagination( $query_all_applications->max_num_pages,"",$paged );
+				endif;
 				?>
-			</section>
+				<?php else:  ?>
+				<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+				<?php endif; ?>
+			
+				</div>
+			
 		</main><!-- #main -->
 		<aside class="contextual-sidebar"> 
 			<?php
@@ -193,7 +206,7 @@ get_header();
 				<?php } ?>
 			</section>
 		</aside>
-	</div><!-- #primary -->
-	</div>
-<?php
-get_footer();
+		</div><!-- #primary -->
+		
+		<?php wp_reset_postdata(); ?>		
+		<?php get_footer();
